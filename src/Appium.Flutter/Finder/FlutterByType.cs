@@ -7,11 +7,11 @@ namespace Appium.Flutter.Finder
         [JsonPropertyName("finderType")]
         public string FinderType { get; private set; }
         [JsonPropertyName("type")]
-        public string TypeValue { get; private set; }
+        public new string Type { get; private set; }
         public FlutterByType(string type)
         {
             FinderType = "ByType";
-            TypeValue = type;
+            Type = type;
         }
 
         protected override string ToJson()
