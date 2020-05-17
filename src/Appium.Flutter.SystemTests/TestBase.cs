@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Appium.Flutter.Contracts;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
@@ -33,11 +34,11 @@ namespace Appium.Flutter.SystemTests
             capabilities.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, 60000);
 
             // TODO: 
-            Uri addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");
+            var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");
             var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));
-            var androidDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);
+            var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);
 
-            var fd = new FlutterDriver(androidDriver, commandExecutor);
+            var fd = new FlutterDriver(webDriver, commandExecutor);
             return fd;
         }
 

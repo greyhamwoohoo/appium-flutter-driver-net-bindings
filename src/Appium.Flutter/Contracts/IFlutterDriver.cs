@@ -1,4 +1,4 @@
-﻿namespace Appium.Flutter
+﻿namespace Appium.Flutter.Contracts
 {
     public interface IFlutterDriver
     {

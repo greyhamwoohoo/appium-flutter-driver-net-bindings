@@ -1,24 +1,28 @@
-﻿using OpenQA.Selenium;
+﻿using Appium.Flutter.Contracts;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Remote;
 
 namespace Appium.Flutter
 {
-    public class FlutterDriver : IFlutterDriver
+    public class FlutterDriver : IFlutterDriver, IWrapsDriver
     {
-        private readonly IWebDriver _driver;
-        private readonly ICommandExecutor _commandExecutor;
+        protected ICommandExecutor CommandExecution { get; }
+
+        public IWebDriver WrappedDriver { get; }
 
         public FlutterDriver(IWebDriver driver, ICommandExecutor commandExecutor)
         {
             if (null == driver) throw new System.ArgumentNullException(nameof(driver));
             if (null == commandExecutor) throw new System.ArgumentNullException(nameof(commandExecutor));
 
-            _driver = driver;
-            _commandExecutor = commandExecutor;
+            WrappedDriver = driver;
+            CommandExecution = commandExecutor;
         }
+
         public object ExecuteScript(string script, params object[] args)
         {
-            var javascriptExecutor = _driver as IJavaScriptExecutor;
+            var javascriptExecutor = WrappedDriver as IJavaScriptExecutor;
             if (null == javascriptExecutor) throw new System.InvalidOperationException($"The WebDriver does not support Javascript Execution. ");
 
             var result = javascriptExecutor.ExecuteScript(script, args);

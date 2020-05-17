@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Appium.Flutter.Contracts;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Appium.Flutter.SystemTests
