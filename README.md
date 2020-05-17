@@ -4,7 +4,7 @@
 # STATUS: VERY MUCH A WORK IN PROGRESS!
 This is a spike/poc for my needs at the moment; the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. Expect breaking changes. 
 
-This is currently in 'Bootstrapping' mode: one Finder is in place, the Test Projects and a System Health Check. That's it :)
+This is currently in 'Bootstrapping' mode: finders are in place, a few key session methods and a few commands. 
 
 Android is the focus for now. 
 
@@ -33,7 +33,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | ancestor           |   :x:  | :x:        | :x:          |
 | bySemanticsLabel   |   :x:  | :x:        | :x:          |
 | byTooltip          |   :x:  | :ok:       | :x:          |
-| byType             |   :x:  | :x:        | :x:          |
+| byType             |   :x:  | :ok:       | :x:          |
 | byValueKey         |   :x:  | :ok:       | :x:          |
 | descendent         |   :x:  | :x:        | :x:          |
 | pageBack           |   :x:  | :ok:       | :x:          |
@@ -42,10 +42,13 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ### Commands
 TODO: Add the rest of these here
 
-| Flutter API | System Tests | WebDriver Example                               | Scope   | 
-| ----------- | ------------ | ----------------------------------------------- | ------- |
-| checkHealth |   :ok:       | theDriver.CheckHealth()                         | Session |
-| getText     |   :x:        | theDriver.GetElementText(counterTextFinder)     | Widget  |
+| Flutter API   | System Tests | WebDriver Example                               | Scope   | 
+| ------------- | ------------ | ----------------------------------------------- | ------- |
+| checkHealth   |   :ok:       | theDriver.CheckHealth()                         | Session |
+| clearTimeline |   :ok:       | theDriver.ClearTimeline()                       | Session |
+| forceGC       |   :ok:       | theDriver.ForceGC()                             | Session |
+| getRenderTree |   :ok:       | theDriver.GetRenderTree()                       | Session |
+| getText       |   :x:        | theDriver.GetElementText(counterTextFinder)     | Widget  |
 
 
 ## Stream of Conciousness

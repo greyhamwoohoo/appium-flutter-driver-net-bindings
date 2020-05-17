@@ -2,7 +2,10 @@
 {
     public interface IFlutterDriver
     {
-        object ExecuteScript(string script, params object[] args);
         string CheckHealth();
+        void ClearTimeline();
+        object ExecuteScript(string script, params object[] args);
+        void ForceGC();
+        string GetRenderTree();
     }
 }

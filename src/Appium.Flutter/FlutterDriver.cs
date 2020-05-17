@@ -30,5 +30,21 @@ namespace Appium.Flutter
             var result = ExecuteScript("flutter:checkHealth");
             return $"{result}";
         }
+
+        public void ClearTimeline()
+        {
+            ExecuteScript("flutter:clearTimeline");
+        }
+
+        public void ForceGC()
+        {
+            ExecuteScript("flutter:forceGC");
+        }
+
+        public string GetRenderTree()
+        {
+            var result = ExecuteScript("flutter:getRenderTree");
+            return $"{result}";
+        }
     }
 }
