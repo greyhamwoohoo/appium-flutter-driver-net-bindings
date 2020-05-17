@@ -42,20 +42,21 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ### Commands
 TODO: Add the rest of these here
 
-| Flutter API   | System Tests | WebDriver Example                               | Scope   | 
-| ------------- | ------------ | ----------------------------------------------- | ------- |
-| checkHealth   |   :ok:       | theDriver.CheckHealth()                         | Session |
-| clearTimeline |   :ok:       | theDriver.ClearTimeline()                       | Session |
-| forceGC       |   :ok:       | theDriver.ForceGC()                             | Session |
-| getRenderTree |   :ok:       | theDriver.GetRenderTree()                       | Session |
-| getText       |   :x:        | theDriver.GetElementText(counterTextFinder)     | Widget  |
+| Flutter API               | System Tests | WebDriver Example                                 | Scope   | 
+| ------------------------- | ------------ | ------------------------------------------------- | ------- |
+| FlutterDriver.connectedTo |   :ok:       | var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");<br>var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));<br>var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);<br>var fd = new FlutterDriver(webDriver, commandExecutor) | Session |
+| checkHealth               |   :ok:       | theDriver.CheckHealth()                           | Session |
+| clearTimeline             |   :ok:       | theDriver.ClearTimeline()                         | Session |
+| forceGC                   |   :ok:       | theDriver.ForceGC()                               | Session |
+| getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
+| getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
 
 
 ## Stream of Conciousness
 | Musing | Mumblings |
 | ------ | --------- |
-| RemoteWebDriver.sessionId is private in .Net Selenium | Use cases - such as Hot Reload - could gain by getting access to this property<br><br>It is exposed in some other language bindings.|
 | Decorate or Isolate | I have chosen to design the solution (at present) by making  the .Net IFlutterDriver expose only the commands, methods and properties that Flutter Driver supports. <br><br>I am not using inheritance, deriving from or decorating any Selenium or Appium classes with extension methods unless I have to<br><br>Rationale: As there will likely be changes to 'appium-flutter-driver' and as there are many changes between the .Net Selenium 3 and 4 code bases, this approach seems the most resilient choice for consumers right now. <br><br>Providing the tests stick to consuming IFlutterDriver, the part most likely to change in future is the FlutterDriver construction. |
+| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) |
 
 ## References
 | Reference | Link |

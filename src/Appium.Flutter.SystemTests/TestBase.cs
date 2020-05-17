@@ -38,7 +38,7 @@ namespace Appium.Flutter.SystemTests
             var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));
             var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);
 
-            var fd = new FlutterDriver(webDriver, commandExecutor);
+            var fd = new FlutterDriver(webDriver, commandExecutor, webDriver.SessionId);
             return fd;
         }
 
