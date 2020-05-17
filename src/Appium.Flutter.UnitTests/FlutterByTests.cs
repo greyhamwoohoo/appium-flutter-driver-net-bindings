@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Appium.Flutter.Finder;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Appium.Flutter.UnitTests
@@ -39,6 +40,46 @@ namespace Appium.Flutter.UnitTests
             var asBase64 = asFlutterFinder.ToBase64();
 
             asBase64.Should().Be("eyJmaW5kZXJUeXBlIjoiQnlWYWx1ZUtleSIsImtleVZhbHVlU3RyaW5nIjoxMDAsImtleVZhbHVlVHlwZSI6ImludCJ9", because: "the Base64 Serialization should match the NodeJs version");
+        }
+
+        [TestMethod]
+        public void PageBack()
+        {
+            // NodeJs Snippet:
+            // console.log(find.pageBack())
+
+            // Output:
+            // eyJmaW5kZXJUeXBlIjoiUGFnZUJhY2sifQ
+            var asPageBackFinder = FlutterBy.PageBack();
+
+            var asBase64 = asPageBackFinder.ToBase64();
+
+            asBase64.Should().Be("eyJmaW5kZXJUeXBlIjoiUGFnZUJhY2sifQ", because: "the Base64 Serialization should match the NodeJs version");
+        }
+
+        [TestMethod]
+        [DataRow(null, "eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6bnVsbH0")]
+        [DataRow("", "eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6IiJ9")]
+        [DataRow(" ", "eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6IiAifQ")]
+        [DataRow("theText", "eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6InRoZVRleHQifQ")]
+        public void ByText(string inputText, string nodeOutputAsBase64)
+        {
+            // NodeJs Snippet:
+            // console.log(find.byText(null))
+            // console.log(find.byText(""))
+            // console.log(find.byText(" "))
+            // console.log(find.byText("theText"))
+
+            // Output:
+            // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6bnVsbH0
+            // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6IiJ9
+            // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6IiAifQ
+            // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6InRoZVRleHQifQ
+            var asPageBackFinder = FlutterBy.Text(inputText);
+
+            var asBase64 = asPageBackFinder.ToBase64();
+
+            asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
         }
     }
 }
