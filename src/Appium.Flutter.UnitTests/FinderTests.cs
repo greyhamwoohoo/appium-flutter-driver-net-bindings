@@ -8,7 +8,7 @@ namespace Appium.Flutter.UnitTests
     /// NOTE: All tests are backed by a node.js snippet which acts as the source of truth: these snippets can be run in the examples/nodejs/src folder in the appium-flutter-driver repository.
     /// </summary>
     [TestClass]
-    public class FlutterByTests
+    public class FinderTests
     {
         [TestMethod]
         public void ByValueKeyIsString()
@@ -76,6 +76,56 @@ namespace Appium.Flutter.UnitTests
             // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6IiAifQ
             // eyJmaW5kZXJUeXBlIjoiQnlUZXh0IiwidGV4dCI6InRoZVRleHQifQ
             var asPageBackFinder = FlutterBy.Text(inputText);
+
+            var asBase64 = asPageBackFinder.ToBase64();
+
+            asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
+        }
+
+        [TestMethod]
+        [DataRow(null, "eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOm51bGx9")]
+        [DataRow("", "eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiIifQ")]
+        [DataRow(" ", "eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiIgIn0")]
+        [DataRow("theText", "eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiJ0aGVUZXh0In0")]
+        public void ByTooltip(string inputText, string nodeOutputAsBase64)
+        {
+            // NodeJs Snippet:
+            // console.log(find.byTooltip(null))
+            // console.log(find.byTooltip(""))
+            // console.log(find.byTooltip(" "))
+            // console.log(find.byTooltip("theText"))
+
+            // Output:
+            // eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOm51bGx9
+            // eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiIifQ
+            // eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiIgIn0
+            // eyJmaW5kZXJUeXBlIjoiQnlUb29sdGlwTWVzc2FnZSIsInRleHQiOiJ0aGVUZXh0In0
+            var asPageBackFinder = FlutterBy.Tooltip(inputText);
+
+            var asBase64 = asPageBackFinder.ToBase64();
+
+            asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
+        }
+
+        [TestMethod]
+        [DataRow(null, "eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6bnVsbH0")]
+        [DataRow("", "eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6IiJ9")]
+        [DataRow(" ", "eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6IiAifQ")]
+        [DataRow("theType", "eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6InRoZVR5cGUifQ")]
+        public void ByType(string inputText, string nodeOutputAsBase64)
+        {
+            // NodeJs Snippet:
+            // console.log(find.byType(null))
+            // console.log(find.byType(""))
+            // console.log(find.byType(" "))
+            // console.log(find.byType("theType"))
+
+            // Output:
+            // eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6bnVsbH0
+            // eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6IiJ9
+            // eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6IiAifQ
+            // eyJmaW5kZXJUeXBlIjoiQnlUeXBlIiwidHlwZSI6InRoZVR5cGUifQ
+            var asPageBackFinder = FlutterBy.Type(inputText);
 
             var asBase64 = asPageBackFinder.ToBase64();
 

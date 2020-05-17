@@ -32,12 +32,12 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | ------------------ | ------ | ---------- | ------------ |
 | ancestor           |   :x:  | :x:        | :x:          |
 | bySemanticsLabel   |   :x:  | :x:        | :x:          |
-| byTooltip          |   :x:  | :x:        | :x:          |
+| byTooltip          |   :x:  | :ok:       | :x:          |
 | byType             |   :x:  | :x:        | :x:          |
 | byValueKey         |   :x:  | :ok:       | :x:          |
 | descendent         |   :x:  | :x:        | :x:          |
-| pageBack           |   :x:  | :x:        | :x:          |
-| text               |   :x:  | :x:        | :x:          |
+| pageBack           |   :x:  | :ok:       | :x:          |
+| text               |   :x:  | :ok:       | :x:          |
 
 ### Commands
 TODO: Add the rest of these here

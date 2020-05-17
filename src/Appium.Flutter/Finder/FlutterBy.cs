@@ -39,5 +39,14 @@ namespace Appium.Flutter.Finder
         {
             return new FlutterByText(text);
         }
+        public static FlutterBy Tooltip(string tooltip)
+        {
+            return new FlutterByTooltip(tooltip);
+        }
+
+        public static FlutterBy Type(string type)
+        {
+            return new FlutterByType(type);
+        }
     }
 }
