@@ -1,4 +1,5 @@
 ﻿using Appium.Flutter.Finder;
+using System.Collections.Generic;
 
 namespace Appium.Flutter.Contracts
 {
@@ -10,5 +11,6 @@ namespace Appium.Flutter.Contracts
         void ForceGC();
         string GetRenderTree();
         string GetElementText(FlutterBy by);
+        Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

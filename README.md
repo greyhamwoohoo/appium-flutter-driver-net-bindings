@@ -54,7 +54,7 @@ TODO: Add the rest of these here
 | getBottomLeft             |   :x:        | TODO:                                             | Widget  |
 | getBottomRight            |   :x:        | TODO:                                             | Widget  |
 | getCenter                 |   :x:        | TODO:                                             | Widget  |
-| getRenderObjectDiagnostics|   :x:        | TODO:                                             | Widget  |
+| getRenderObjectDiagnostics|   :ok:       | theDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 1)                                             | Widget  |
 | getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
 | getSemanticsId            |   :x:        | TODO:                                             | Widget  |
 | getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |

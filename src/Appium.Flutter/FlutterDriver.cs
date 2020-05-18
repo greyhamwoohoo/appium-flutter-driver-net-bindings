@@ -211,6 +211,20 @@ namespace Appium.Flutter
             }
         }
 
+        public Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            var raw = ExecuteScript("flutter:getRenderObjectDiagnostics", by.ToBase64(), new Dictionary<string, object>()
+            {
+                { "includeProperties", includeProperties },
+                { "subtreeDepth", subtreeDepth }
+            });
+
+            var response = raw as Dictionary<string, object>;
+            return response;
+        }
+
         #endregion
     }
 }
