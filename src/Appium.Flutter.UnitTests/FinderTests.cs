@@ -131,5 +131,30 @@ namespace Appium.Flutter.UnitTests
 
             asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
         }
+
+        [TestMethod]
+        [DataRow(null, "eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOm51bGx9")]
+        [DataRow("", "eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIifQ")]
+        [DataRow(" ", "eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIgIn0")]
+        [DataRow("theSemanticsLabel", "eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiJ0aGVTZW1hbnRpY3NMYWJlbCJ9")]
+        public void BySemanticsLabel_NotRegularExpression(string inputText, string nodeOutputAsBase64)
+        {
+            // NodeJs Snippet:
+            // console.log(find.bySemanticsLabel(null))
+            // console.log(find.bySemanticsLabel(""))
+            // console.log(find.bySemanticsLabel(" "))
+            // console.log(find.bySemanticsLabel("theSemanticsLabel"))
+
+            // Output:
+            // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOm51bGx9
+            // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIifQ
+            // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIgIn0
+            // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiJ0aGVTZW1hbnRpY3NMYWJlbCJ9
+            var asPageBackFinder = FlutterBy.SemanticsLabel(inputText);
+
+            var asBase64 = asPageBackFinder.ToBase64();
+
+            asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
+        }
     }
 }

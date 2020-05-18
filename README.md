@@ -31,7 +31,8 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | Flutter Driver API | Status | Unit Tests | System Tests |
 | ------------------ | ------ | ---------- | ------------ |
 | ancestor           |   :x:  | :x:        | :x:          |
-| bySemanticsLabel   |   :x:  | :x:        | :x:          |
+| bySemanticsLabel   |   :x:  | :ok:       | :x:          |
+| bySemanticsLabel (Regular Expression)  |   :x:  | :x:        | :x:          |
 | byTooltip          |   :x:  | :ok:       | :x:          |
 | byType             |   :x:  | :ok:       | :x:          |
 | byValueKey         |   :x:  | :ok:       | :x:          |
@@ -40,8 +41,6 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | text               |   :x:  | :ok:       | :x:          |
 
 ### Commands
-TODO: Add the rest of these here
-
 | Flutter API               | System Tests | WebDriver Example                                 | Scope   | 
 | ------------------------- | ------------ | ------------------------------------------------- | ------- |
 | FlutterDriver.connectedTo |   :ok:       | var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");<br>var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));<br>var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);<br>var fd = new FlutterDriver(webDriver, commandExecutor) | Session |

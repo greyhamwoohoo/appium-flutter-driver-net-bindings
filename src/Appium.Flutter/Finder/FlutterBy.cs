@@ -48,5 +48,9 @@ namespace Appium.Flutter.Finder
         {
             return new FlutterByType(type);
         }
+        public static FlutterBy SemanticsLabel(string label)
+        {
+            return new FlutterBySemanticsLabel(label);
+        }
     }
 }
