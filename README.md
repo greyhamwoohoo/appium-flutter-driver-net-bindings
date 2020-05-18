@@ -46,11 +46,43 @@ TODO: Add the rest of these here
 | ------------------------- | ------------ | ------------------------------------------------- | ------- |
 | FlutterDriver.connectedTo |   :ok:       | var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");<br>var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));<br>var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);<br>var fd = new FlutterDriver(webDriver, commandExecutor) | Session |
 | checkHealth               |   :ok:       | theDriver.CheckHealth()                           | Session |
+| clearTextbox              |   :x:        | TODO:                                             | Session |
 | clearTimeline             |   :ok:       | theDriver.ClearTimeline()                         | Session |
+| close                     |   :x:        | TODO:                                             | Session |
+| enterText                 |   :x:        | TODO:                                             | Session |
 | forceGC                   |   :ok:       | theDriver.ForceGC()                               | Session |
+| getBottomLeft             |   :x:        | TODO:                                             | Widget  |
+| getBottomRight            |   :x:        | TODO:                                             | Widget  |
+| getCenter                 |   :x:        | TODO:                                             | Widget  |
+| getRenderObjectDiagnostics|   :x:        | TODO:                                             | Widget  |
 | getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
+| getSemanticsId            |   :x:        | TODO:                                             | Widget  |
 | getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
-
+| getTopLeft                |   :x:        | TODO:                                             | Widget  |
+| getTopRight               |   :x:        | TODO:                                             | Widget  |
+| getVmFlags                |   :x:        | TODO:                                             | Session |
+| getWidgetDiagnostics      |   :x:        | TODO:                                             | Widget  |
+| requestData               |   :x:        | TODO:                                             | Session |
+| runUnsyncrhonized         |   :x:        | TODO:                                             | Session |
+| screenshot                |   :x:        | TODO:                                             | Session |
+| screenshot                |   :x:        | TODO:                                             | Session |
+| scroll                    |   :x:        | TODO:                                             | Widget  |
+| scrollIntoView            |   :x:        | TODO:                                             | Widget  |
+| scrollUntilVisible        |   :x:        | TODO:                                             | Widget  |
+| setSemantics              |   :x:        | TODO:                                             | Session |
+| setTextEntryEmulation     |   :x:        | TODO:                                             | Session |
+| startTracing              |   :x:        | TODO:                                             | Session |
+| stopTracingAndDownloadTimeline|   :x:    | TODO:                                             | Session |
+| tap                       |   :x:        | TODO:                                             | Widget  |
+| tap                       |   :x:        | TODO:                                             | Widget  |
+| traceAction               |   :x:        | TODO:                                             | Session |
+| waitFor                   |   :x:        | TODO:                                             | Widget  |
+| waitForAbsent             |   :x:        | TODO:                                             | Widget  |
+| waitUntilNoTransientCallbacks|   :x:     | TODO:                                             | Widget  |
+| :question:                |   :x:        | setContext                                        | Appium  |
+| :question:                |   :warning:  | getCurrentText                                    | Appium  |
+| :question:                |   :warning:  | getContexts                                       | Appium  |
+| :question:                |   :x:        | longTap                                           | Widget  |
 
 ## Stream of Conciousness
 | Musing | Mumblings |
