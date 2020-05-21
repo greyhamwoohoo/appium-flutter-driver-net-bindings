@@ -71,11 +71,11 @@ namespace Appium.Flutter.SystemTests
         [TestMethod]
         public void GetSemanticsId_ByScript()
         {
-            var semanticsId = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Tooltip("Raise Me By 3").ToBase64());
+            var result = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Tooltip("Raise Me By 3").ToBase64());
 
-            semanticsId.Should().BeOfType(typeof(int));
+            result.Should().BeOfType(typeof(long));
 
-            ((int)semanticsId).Should().NotBe(0);
+            ((long)result).Should().NotBe(0);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Appium.Flutter.SystemTests
         {
             var semanticsId = FlutterDriver.GetSemanticsId(FlutterBy.Type("FlatButton"));
 
-            ((int)semanticsId).Should().NotBe(0);
+            semanticsId.Should().NotBe(0);
         }
 
         private void AssertCounterIs(string value, string because)

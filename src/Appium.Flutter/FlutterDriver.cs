@@ -1,4 +1,5 @@
-﻿using Appium.Flutter.Contracts;
+﻿using Appium.Flutter.Bounds;
+using Appium.Flutter.Contracts;
 using Appium.Flutter.Finder;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
@@ -244,6 +245,49 @@ namespace Appium.Flutter
             return response;
         }
 
+        public Position GetBottomLeft(FlutterBy by)
+        {
+            return GetAndAssertPositionResult(by, "flutter:getBottomLeft");
+        }
+
+        public Position GetBottomRight(FlutterBy by)
+        {
+            return GetAndAssertPositionResult(by, "flutter:getBottomRight");
+        }
+
+        public Position GetTopLeft(FlutterBy by)
+        {
+            return GetAndAssertPositionResult(by, "flutter:getTopLeft");
+        }
+
+        public Position GetTopRight(FlutterBy by)
+        {
+            return GetAndAssertPositionResult(by, "flutter:getTopRight");
+        }
+
+        public Position GetCenter(FlutterBy by)
+        {
+            return GetAndAssertPositionResult(by, "flutter:getCenter");
+        }
+
         #endregion
+
+        private Position GetAndAssertPositionResult(FlutterBy by, string position)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            var result = ExecuteScript(position, by.ToBase64()); ;
+            if (result == null) throw new System.InvalidCastException($"Position APIs are expected to return a Dictionary<string, object> but returned null. ");
+
+            var dictionary = result as Dictionary<string, object>;
+            if (dictionary == null) throw new System.InvalidCastException($"Position APIs are expected to return a Dictionary<string, object> but instead returned type {result.GetType().FullName}");
+
+            if (!dictionary.ContainsKey("dx") || !dictionary.ContainsKey("dy"))
+            {
+                throw new System.InvalidOperationException($"The response was of type Dictionary<string, object> but did not contain both a 'dx' and 'dy' property as expected. ");
+            }
+
+            return new Position(dx: (double)dictionary["dx"], dy: (double)dictionary["dy"]);
+        }
     }
 }

@@ -50,15 +50,15 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | close                     |   :x:        | TODO:                                             | Session |
 | enterText                 |   :x:        | TODO:                                             | Session |
 | forceGC                   |   :ok:       | theDriver.ForceGC()                               | Session |
-| getBottomLeft             |   :x:        | TODO:                                             | Widget  |
-| getBottomRight            |   :x:        | TODO:                                             | Widget  |
-| getCenter                 |   :x:        | TODO:                                             | Widget  |
+| getBottomLeft             |   :ok:        | theDriver.GetBottomLeft(FlutterBy.Text("theText"))                                            | Widget  |
+| getBottomRight            |   :ok:       | theDriver.GetBottomRight(FlutterBy.Text("theText"))                                             | Widget  |
+| getCenter                 |   :ok:        | theDriver.GetCenter(FlutterBy.Text("theText"))                                             | Widget  |
 | getRenderObjectDiagnostics|   :ok:       | theDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 1)                                             | Widget  |
 | getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
 | getSemanticsId            |   :ok:       | theDriver.GetSemanticsId(FlutterBy.ValueKey("counter"))                                        | Widget  |
 | getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
-| getTopLeft                |   :x:        | TODO:                                             | Widget  |
-| getTopRight               |   :x:        | TODO:                                             | Widget  |
+| getTopLeft                |   :ok:       | theDriver.GetTopLeft(FlutterBy.Text("theText"))                                             | Widget  |
+| getTopRight               |   :ok:        | theDriver.GetTopRight(FlutterBy.Text("theText"))                                             | Widget  |
 | getVmFlags                |   :x:        | TODO:                                             | Session |
 | getWidgetDiagnostics      |   :x:        | TODO:                                             | Widget  |
 | requestData               |   :x:        | TODO:                                             | Session |
