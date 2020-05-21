@@ -31,7 +31,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | Flutter Driver API | Status | Unit Tests | System Tests |
 | ------------------ | ------ | ---------- | ------------ |
 | ancestor           |   :x:  | :x:        | :x:          |
-| bySemanticsLabel   |   :x:  | :ok:       | :x:          |
+| bySemanticsLabel   |   :x:  | :ok:       | :ok:          |
 | bySemanticsLabel (Regular Expression)  |   :x:  | :x:        | :x:          |
 | byTooltip          |   :x:  | :ok:       | :ok:          |
 | byType             |   :x:  | :ok:       | :ok:          |
@@ -55,7 +55,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | getCenter                 |   :x:        | TODO:                                             | Widget  |
 | getRenderObjectDiagnostics|   :ok:       | theDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 1)                                             | Widget  |
 | getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
-| getSemanticsId            |   :x:        | TODO:                                             | Widget  |
+| getSemanticsId            |   :ok:       | theDriver.GetSemanticsId(FlutterBy.ValueKey("counter"))                                        | Widget  |
 | getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
 | getTopLeft                |   :x:        | TODO:                                             | Widget  |
 | getTopRight               |   :x:        | TODO:                                             | Widget  |

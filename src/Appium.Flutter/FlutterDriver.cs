@@ -28,7 +28,7 @@ namespace Appium.Flutter
             if (args == null) args = new object[0];
 
             var javascriptExecutor = WrappedDriver as IJavaScriptExecutor;
-            if (null == javascriptExecutor) throw new System.InvalidOperationException($"The WebDriver does not support Javascript Execution. ");
+            if (null == javascriptExecutor) throw new InvalidOperationException($"The WebDriver does not support Javascript Execution. ");
 
             var result = javascriptExecutor.ExecuteScript(script, args);
             return result;
@@ -76,6 +76,15 @@ namespace Appium.Flutter
             });
 
             return $"{response.Value}";
+        }
+
+        public long GetSemanticsId(FlutterBy by)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            var response = ExecuteScript("flutter:getSemanticsId", by.ToBase64());
+
+            return ((long)response);
         }
 
         #region Mostly lifted from RemoteWebDriver

@@ -68,6 +68,24 @@ namespace Appium.Flutter.SystemTests
             AssertCounterIs("4", because: "we pressed the Semantics Label button");
         }
 
+        [TestMethod]
+        public void GetSemanticsId_ByScript()
+        {
+            var semanticsId = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Tooltip("Raise Me By 3").ToBase64());
+
+            semanticsId.Should().BeOfType(typeof(int));
+
+            ((int)semanticsId).Should().NotBe(0);
+        }
+
+        [TestMethod]
+        public void GetSemanticsId_Driver()
+        {
+            var semanticsId = FlutterDriver.GetSemanticsId(FlutterBy.Type("FlatButton"));
+
+            ((int)semanticsId).Should().NotBe(0);
+        }
+
         private void AssertCounterIs(string value, string because)
         {
             var result = FlutterDriver.GetElementText(FlutterBy.ValueKey("counter"));

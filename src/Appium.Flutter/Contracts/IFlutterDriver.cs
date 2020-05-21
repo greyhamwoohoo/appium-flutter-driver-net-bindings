@@ -14,7 +14,7 @@ namespace Appium.Flutter.Contracts
         string GetRenderTree();
         string GetElementText(FlutterBy by);
         void Click(FlutterBy by);
-        IWebDriver WrappedDriver { get; }
+        long GetSemanticsId(FlutterBy by);
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }
