@@ -10,14 +10,6 @@ namespace Appium.Flutter.SystemTests
     [TestClass]
     public class ConstructionTests : TestBase
     {
-        protected static IFlutterDriver FlutterDriver;
-
-        [ClassInitialize]
-        public static void Setup(TestContext _)
-        {
-            FlutterDriver = StartApplication();
-        }
-
         [TestMethod]
         public void FlutterDriver_WrapsDriver()
         {

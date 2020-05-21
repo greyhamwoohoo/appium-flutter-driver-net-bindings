@@ -45,6 +45,16 @@ namespace Appium.Flutter
             ExecuteScript("flutter:clearTimeline");
         }
 
+        public void Click(FlutterBy by)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            var response = Execute(DriverCommand.ClickElement, new Dictionary<string, object>()
+            {
+                { "id", by.ToBase64() }
+            });
+        }
+
         public void ForceGC()
         {
             ExecuteScript("flutter:forceGC");

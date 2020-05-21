@@ -12,7 +12,8 @@ namespace Appium.Flutter.SystemTests
     [TestClass]
     public abstract class TestBase
     {
-        public const string AndroidAppPath = @"C:\temp\android-real-debug.apk";
+        // public const string AndroidAppPath = @"C:\temp\android-real-debug.apk";
+        public const string AndroidAppPath = @"F:\greyhamwoohoo-private\appium-flutter-driver-net-bindings\src\Appium.Flutter.TestApp\howdi_welt\build\app\outputs\apk\app.apk";
 
         protected static IFlutterDriver StartApplication()
         {
@@ -31,7 +32,7 @@ namespace Appium.Flutter.SystemTests
             capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.NativeWebScreenshot, false);
             capabilities.AddAdditionalCapability(MobileCapabilityType.AutomationName, "Flutter");
             capabilities.AddAdditionalCapability(MobileCapabilityType.NoReset, false);
-            capabilities.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, 60000);
+            capabilities.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, 120000);
 
             // TODO: 
             var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");
@@ -43,5 +44,19 @@ namespace Appium.Flutter.SystemTests
         }
 
         public TestContext TestContext { get; set; }
+
+        protected IFlutterDriver FlutterDriver;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            FlutterDriver = StartApplication();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            FlutterDriver?.WrappedDriver?.Quit();
+        }
     }
 }

@@ -13,22 +13,6 @@ namespace Appium.Flutter.SystemTests
     [TestClass]
     public class WalkthroughTest : TestBase
     {
-        protected static IFlutterDriver FlutterDriver;
-
-        [ClassInitialize]
-        public static void Setup(TestContext _)
-        {
-            FlutterDriver = StartApplication();
-        }
-
-        [TestMethod]
-        public void Walkthrough()
-        {
-            var result = FlutterDriver.GetElementText(FlutterBy.ValueKey("counter"));
-
-            result.Should().Be("0", because: "that is the default value of the Couner. ");
-        }
-
         [TestMethod]
         public void GetRenderObjectDiagnostics_Javascript()
         {
@@ -51,6 +35,15 @@ namespace Appium.Flutter.SystemTests
             var response = FlutterDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 2);
 
             AssertGetRenderObjectDiagnosticsResponse(response);
+        }
+
+        [TestMethod]
+        [Ignore()]
+        public void EXP()
+        {
+            var t = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Text("Increment 1").ToBase64());
+            var result = FlutterDriver.GetElementText(FlutterBy.SemanticsLabel("counter"));
+
         }
 
         private void AssertGetRenderObjectDiagnosticsResponse(Dictionary<string, object> response)

@@ -33,12 +33,12 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | ancestor           |   :x:  | :x:        | :x:          |
 | bySemanticsLabel   |   :x:  | :ok:       | :x:          |
 | bySemanticsLabel (Regular Expression)  |   :x:  | :x:        | :x:          |
-| byTooltip          |   :x:  | :ok:       | :x:          |
-| byType             |   :x:  | :ok:       | :x:          |
-| byValueKey         |   :x:  | :ok:       | :x:          |
+| byTooltip          |   :x:  | :ok:       | :ok:          |
+| byType             |   :x:  | :ok:       | :ok:          |
+| byValueKey         |   :x:  | :ok:       | :ok:          |
 | descendent         |   :x:  | :x:        | :x:          |
 | pageBack           |   :x:  | :ok:       | :x:          |
-| text               |   :x:  | :ok:       | :x:          |
+| text               |   :x:  | :ok:       | :ok:          |
 
 ### Commands
 | Flutter API               | System Tests | WebDriver Example                                 | Scope   | 
@@ -72,7 +72,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | setTextEntryEmulation     |   :x:        | TODO:                                             | Session |
 | startTracing              |   :x:        | TODO:                                             | Session |
 | stopTracingAndDownloadTimeline|   :x:    | TODO:                                             | Session |
-| tap                       |   :x:        | TODO:                                             | Widget  |
+| tap                       |   :ok:       | theDriver.Click(FlutterBy by)                                             | Widget  |
 | tap                       |   :x:        | TODO:                                             | Widget  |
 | traceAction               |   :x:        | TODO:                                             | Session |
 | waitFor                   |   :x:        | TODO:                                             | Widget  |
@@ -87,7 +87,12 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | Musing | Mumblings |
 | ------ | --------- |
 | Decorate or Isolate | I have chosen to design the solution (at present) by making  the .Net IFlutterDriver expose only the commands, methods and properties that Flutter Driver supports. <br><br>I am not using inheritance, deriving from or decorating any Selenium or Appium classes with extension methods unless I have to<br><br>Rationale: As there will likely be changes to 'appium-flutter-driver' and as there are many changes between the .Net Selenium 3 and 4 code bases, this approach seems the most resilient choice for consumers right now. <br><br>Providing the tests stick to consuming IFlutterDriver, the part most likely to change in future is the FlutterDriver construction. |
-| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) |
+
+## Observations
+| The Thing | The Description |
+| --------- | --------------- |
+| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) <br><br>Searching for another element (without restarting/resetting the app) also appears to cause a timeout. |
+
 
 ## References
 | Reference | Link |
