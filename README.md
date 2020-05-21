@@ -59,25 +59,25 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
 | getTopLeft                |   :ok:       | theDriver.GetTopLeft(FlutterBy.Text("theText"))                                             | Widget  |
 | getTopRight               |   :ok:        | theDriver.GetTopRight(FlutterBy.Text("theText"))                                             | Widget  |
-| getVmFlags                |   :x:        | TODO:                                             | Session |
-| getWidgetDiagnostics      |   :x:        | TODO:                                             | Widget  |
-| requestData               |   :x:        | TODO:                                             | Session |
-| runUnsyncrhonized         |   :x:        | TODO:                                             | Session |
+| getVmFlags                |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
+| getWidgetDiagnostics      |   :x:        | (Pending appium-flutter-driver implementation)                                            | Widget  |
+| requestData               |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
+| runUnsyncrhonized         |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
 | screenshot                |   :x:        | TODO:                                             | Session |
 | screenshot                |   :x:        | TODO:                                             | Session |
 | scroll                    |   :x:        | TODO:                                             | Widget  |
 | scrollIntoView            |   :x:        | TODO:                                             | Widget  |
 | scrollUntilVisible        |   :x:        | TODO:                                             | Widget  |
-| setSemantics              |   :x:        | TODO:                                             | Session |
-| setTextEntryEmulation     |   :x:        | TODO:                                             | Session |
-| startTracing              |   :x:        | TODO:                                             | Session |
-| stopTracingAndDownloadTimeline|   :x:    | TODO:                                             | Session |
+| setSemantics              |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
+| setTextEntryEmulation     |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
+| startTracing              |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
+| stopTracingAndDownloadTimeline|   :x:    | (Pending appium-flutter-driver implementation)                                             | Session |
 | tap                       |   :ok:       | theDriver.Click(FlutterBy by)                                             | Widget  |
 | tap                       |   :x:        | TODO:                                             | Widget  |
-| traceAction               |   :x:        | TODO:                                             | Session |
+| traceAction               |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
 | waitFor                   |   :x:        | TODO:                                             | Widget  |
 | waitForAbsent             |   :x:        | TODO:                                             | Widget  |
-| waitUntilNoTransientCallbacks|   :x:     | TODO:                                             | Widget  |
+| waitUntilNoTransientCallbacks|   :x:     | (Pending appium-flutter-driver implementation)                                             | Widget  |
 | :question:                |   :x:        | setContext                                        | Appium  |
 | :question:                |   :warning:  | getCurrentText                                    | Appium  |
 | :question:                |   :warning:  | getContexts                                       | Appium  |
