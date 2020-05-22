@@ -1,9 +1,6 @@
-﻿using Appium.Flutter.Contracts;
-using Appium.Flutter.Finder;
+﻿using Appium.Flutter.Finder;
 using FluentAssertions;
-using FluentAssertions.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Appium.Flutter.SystemTests
 {
@@ -14,20 +11,16 @@ namespace Appium.Flutter.SystemTests
     public class FinderTests : TestBase
     {
         [TestInitialize]
-        public void ResetCounter()
+        public void NavigateToFindersPage()
         {
-            // ByType: Reset the counter to 0
-            FlutterDriver.Click(FlutterBy.Type("OutlineButton"));
-            
-            var result = FlutterDriver.GetElementText(FlutterBy.ValueKey("counter"));
-            result.Should().Be("0", because: "that is the default value of the Counter. ");
+            FlutterDriver.Click(FlutterBy.Text("Navigate to Finders and Position Test Page"));
         }
 
         [TestMethod]
         public void ByText()
         {
             // Text
-            FlutterDriver.Click(FlutterBy.Text("Increment 1"));
+            FlutterDriver.Click(FlutterBy.Text("FUT: FlutterBy.Text (Increment 1)"));
 
             AssertCounterIs("1", because: "we pressed the Add+1 button");
         }
@@ -36,7 +29,7 @@ namespace Appium.Flutter.SystemTests
         public void ByValueKey()
         {
             // Text
-            FlutterDriver.Click(FlutterBy.ValueKey("Up By Two"));
+            FlutterDriver.Click(FlutterBy.ValueKey("FUT: FlutterBy.ValueKey (Increment 2)"));
 
             AssertCounterIs("2", because: "we pressed the Add+2 button");
         }
@@ -45,7 +38,7 @@ namespace Appium.Flutter.SystemTests
         public void ByTooltip()
         {
             // Text
-            FlutterDriver.Click(FlutterBy.Tooltip("Raise Me By 3"));
+            FlutterDriver.Click(FlutterBy.Tooltip("FUT: FlutterBy.Tooltip (Increment 3)"));
 
             AssertCounterIs("3", because: "we pressed the Add+3 button");
         }
@@ -63,7 +56,7 @@ namespace Appium.Flutter.SystemTests
         public void BySemanticsLabel()
         {
             // Text
-            FlutterDriver.Click(FlutterBy.SemanticsLabel("Up-By-Four"));
+            FlutterDriver.Click(FlutterBy.SemanticsLabel("FUT: FlutterBy.SemanticsLabel (Increment 4)"));
 
             AssertCounterIs("4", because: "we pressed the Semantics Label button");
         }
@@ -71,7 +64,7 @@ namespace Appium.Flutter.SystemTests
         [TestMethod]
         public void GetSemanticsId_ByScript()
         {
-            var result = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Tooltip("Raise Me By 3").ToBase64());
+            var result = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Tooltip("FUT: FlutterBy.Tooltip (Increment 3)").ToBase64());
 
             result.Should().BeOfType(typeof(long));
 

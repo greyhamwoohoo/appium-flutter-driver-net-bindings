@@ -7,31 +7,8 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'appium-flutter-driver .Net Test App'),
-    );
-  }
-}
+class _FindersTestPageState extends State<FindersTestPage> {
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _resetCounter() {
@@ -49,23 +26,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+        appBar: AppBar(
+          leading: BackButton(
+            key: Key('backToHomePage'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            'Finders and Position Test Page',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             OutlineButton(
               onPressed: _resetCounter,
-              child: Text("Reset Counter",
-              ),
+              child: Text("Reset Counter"),
             ),                   
             FlatButton(
               onPressed: () {
                 _changeCount(-4);
               },
-              child: Text("Flat Button Type - 4",
+              child: Text("FUT: FlutterBy.Type (Increment -4)",
               ),
             ),            
             Text(
@@ -78,37 +63,99 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // Recommendation by flutter.dev is to use, at most, one FloatingActionButton per screen. Lets smash the system :)
             FloatingActionButton.extended(
+              heroTag: "btn1",
               onPressed: () {
                 _changeCount(1);
               },
-              label: Text("Increment 1"),
+              label: Text("FUT: FlutterBy.Text (Increment 1)"),
               icon: Icon(Icons.add)
             ),            
             FloatingActionButton.extended(
+              heroTag: "btn2",
               onPressed: () {
                 _changeCount(2);
               },
-              key: ValueKey("Up By Two"),
-              label: Text("Up-By-Two"),
+              key: ValueKey("FUT: FlutterBy.ValueKey (Increment 2)"),
+              label: Text("FlutterBy.ValueKey (Increment 2)"),
               icon: Icon(Icons.add)
             ),
             FloatingActionButton.extended(
+              heroTag: "btn3",
               onPressed: () {
                 _changeCount(3);
               },
-              label: Text("Up-By-Three"),
-              tooltip: "Raise Me By 3",
+              label: Text("FlutterBy.Tooltip (Increment 3)"),
+              tooltip: "FUT: FlutterBy.Tooltip (Increment 3)",
               icon: Icon(Icons.add)
             ),            
             Semantics (
               child: FloatingActionButton.extended(
+              heroTag: "btn4",
               onPressed: () {
                 _changeCount(4);
               },
-                label: Text("Up-By-Four"),
+                label: Text("FUT: FlutterBy.SemanticsLabel (Increment 4)"),
                 icon: Icon(Icons.add)
               ),
               label: "A Semantic Label To Raise By 4",
+            ),
+          ],
+        ),
+      ));
+  }
+}
+
+class FindersTestPage extends StatefulWidget {
+  FindersTestPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _FindersTestPageState createState() => _FindersTestPageState();
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo (Flutter Driver .Net Bindings Test App)',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(title: 'appium-flutter-driver .Net Test App'),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("Welcome to the Test App"),
+            OutlineButton(
+              onPressed: () { 
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => FindersTestPage()));                
+              },
+              child: Text("Navigate to Finders and Position Test Page")
             ),
           ],
         ),

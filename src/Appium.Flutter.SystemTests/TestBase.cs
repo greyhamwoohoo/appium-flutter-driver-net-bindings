@@ -51,6 +51,10 @@ namespace Appium.Flutter.SystemTests
         public void Setup()
         {
             FlutterDriver = StartApplication();
+
+            // Now wait until the test application is displayed (hackey)
+            // TODO: Replace with WaitFor(...)
+
         }
 
         [TestCleanup]

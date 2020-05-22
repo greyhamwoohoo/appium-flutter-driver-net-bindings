@@ -15,6 +15,12 @@ namespace Appium.Flutter.SystemTests
     {
         protected static FlutterBy Control = FlutterBy.Type("FlatButton");
 
+        [TestInitialize]
+        public void NavigateToFindersPage()
+        {
+            FlutterDriver.Click(FlutterBy.Text("Navigate to Finders and Position Test Page"));
+        }
+
         [TestMethod]
         public void GetBottomLeft_ByScript()
         {

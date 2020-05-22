@@ -150,9 +150,9 @@ namespace Appium.Flutter.UnitTests
             // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIifQ
             // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiIgIn0
             // eyJmaW5kZXJUeXBlIjoiQnlTZW1hbnRpY3NMYWJlbCIsImlzUmVnRXhwIjpmYWxzZSwibGFiZWwiOiJ0aGVTZW1hbnRpY3NMYWJlbCJ9
-            var asPageBackFinder = FlutterBy.SemanticsLabel(inputText);
+            var asResult = FlutterBy.SemanticsLabel(inputText);
 
-            var asBase64 = asPageBackFinder.ToBase64();
+            var asBase64 = asResult.ToBase64();
 
             asBase64.Should().Be(nodeOutputAsBase64, because: "the Base64 Serialization should match the NodeJs version");
         }

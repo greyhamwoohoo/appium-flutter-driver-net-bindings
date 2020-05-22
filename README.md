@@ -31,14 +31,14 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | Flutter Driver API | Status | Unit Tests | System Tests |
 | ------------------ | ------ | ---------- | ------------ |
 | ancestor           |   :x:  | :x:        | :x:          |
-| bySemanticsLabel   |   :x:  | :ok:       | :ok:          |
+| bySemanticsLabel   |   :ok: | :ok:       | :ok:          |
 | bySemanticsLabel (Regular Expression)  |   :x:  | :x:        | :x:          |
-| byTooltip          |   :x:  | :ok:       | :ok:          |
-| byType             |   :x:  | :ok:       | :ok:          |
-| byValueKey         |   :x:  | :ok:       | :ok:          |
+| byTooltip          |   :ok: | :ok:       | :ok:          |
+| byType             |   :ok: | :ok:       | :ok:          |
+| byValueKey         |   :ok: | :ok:       | :ok:          |
 | descendent         |   :x:  | :x:        | :x:          |
 | pageBack           |   :x:  | :ok:       | :x:          |
-| text               |   :x:  | :ok:       | :ok:          |
+| text               |   :ok: | :ok:       | :ok:          |
 
 ### Commands
 | Flutter API               | System Tests | WebDriver Example                                 | Scope   | 
@@ -93,9 +93,9 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | --------- | --------------- |
 | FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) <br><br>Searching for another element (without restarting/resetting the app) also appears to cause a timeout. |
 
-
 ## References
 | Reference | Link |
 | --------- | ---- |
 | Appium Flutter Driver | https://github.com/truongsinh/appium-flutter-driver | 
 | Appium Flutter Driver Test App | https://github.com/truongsinh/appium-flutter-driver/releases/download/v0.0.4/android-real-debug.apk |
+| Flutter App Automation with Appium Flutter Driver<br><br>Got me up and running quickly with test app scaffolding, too | https://dev.to/netfirms/flutter-app-testing-with-appium-flutter-driver-33ko |

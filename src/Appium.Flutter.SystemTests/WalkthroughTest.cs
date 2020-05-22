@@ -13,6 +13,14 @@ namespace Appium.Flutter.SystemTests
     [TestClass]
     public class WalkthroughTest : TestBase
     {
+        protected static FlutterBy Control = FlutterBy.Type("FlatButton");
+
+        [TestInitialize]
+        public void NavigateToFindersPage()
+        {
+            FlutterDriver.Click(FlutterBy.Text("Navigate to Finders and Position Test Page"));
+        }
+
         [TestMethod]
         public void GetRenderObjectDiagnostics_Javascript()
         {
@@ -35,15 +43,6 @@ namespace Appium.Flutter.SystemTests
             var response = FlutterDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 2);
 
             AssertGetRenderObjectDiagnosticsResponse(response);
-        }
-
-        [TestMethod]
-        [Ignore()]
-        public void EXP()
-        {
-            var t = FlutterDriver.ExecuteScript("flutter:getSemanticsId", FlutterBy.Text("Increment 1").ToBase64());
-            var result = FlutterDriver.GetElementText(FlutterBy.SemanticsLabel("counter"));
-
         }
 
         private void AssertGetRenderObjectDiagnosticsResponse(Dictionary<string, object> response)
