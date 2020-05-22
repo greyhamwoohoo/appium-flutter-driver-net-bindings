@@ -63,8 +63,8 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | getWidgetDiagnostics      |   :x:        | (Pending appium-flutter-driver implementation)                                            | Widget  |
 | requestData               |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
 | runUnsyncrhonized         |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
-| screenshot                |   :x:        | TODO:                                             | Session |
-| screenshot                |   :x:        | TODO:                                             | Session |
+| screenshot                |   :ok:        | theDriver.Screenshot(thePath)                                             | Session |
+| screenshot                |   :ok:        | var bytesForPng = theDriver.Screenshot()                                             | Session |
 | scroll                    |   :x:        | TODO:                                             | Widget  |
 | scrollIntoView            |   :x:        | TODO:                                             | Widget  |
 | scrollUntilVisible        |   :x:        | TODO:                                             | Widget  |

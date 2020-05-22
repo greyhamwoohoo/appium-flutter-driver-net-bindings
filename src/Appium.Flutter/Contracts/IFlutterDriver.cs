@@ -20,6 +20,8 @@ namespace Appium.Flutter.Contracts
         Position GetTopLeft(FlutterBy by);
         Position GetTopRight(FlutterBy by);
         Position GetCenter(FlutterBy by);
+        byte[] Screenshot();
+        void Screenshot(string path);
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

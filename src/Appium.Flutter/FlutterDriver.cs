@@ -270,6 +270,38 @@ namespace Appium.Flutter
             return GetAndAssertPositionResult(by, "flutter:getCenter");
         }
 
+        public byte[] Screenshot()
+        {
+            var result = new byte[0];
+
+            var response = Execute(DriverCommand.Screenshot, new Dictionary<string, object>()
+            {
+                { "id", SessionId.ToString() }
+            });
+
+            result = System.Convert.FromBase64String($"{response.Value}");
+
+            return result;
+        }
+
+        public void Screenshot(string path)
+        {
+            if (null == path) throw new System.ArgumentNullException(nameof(path));
+
+            if(System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+
+            var response = Execute(DriverCommand.Screenshot, new Dictionary<string, object>()
+            {
+                { "id", SessionId.ToString() }
+            });
+
+            var result = System.Convert.FromBase64String($"{response.Value}");
+            System.IO.File.WriteAllBytes(path, result);
+        }
+
         #endregion
 
         private Position GetAndAssertPositionResult(FlutterBy by, string position)
