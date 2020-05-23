@@ -352,6 +352,12 @@ namespace Appium.Flutter
             });
         }
 
+        public void Close()
+        {
+            WrappedDriver?.Close();
+            WrappedDriver?.Quit();
+        }
+
         #endregion
 
         private Position GetAndAssertPositionResult(FlutterBy by, string position)

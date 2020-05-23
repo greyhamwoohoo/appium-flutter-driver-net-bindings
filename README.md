@@ -47,7 +47,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | checkHealth               |   :ok:       | theDriver.CheckHealth()                           | Session |
 | clearTextbox              |   :ok:       | theDriver.Clear(FlutterBy)                                             | Session |
 | clearTimeline             |   :ok:       | theDriver.ClearTimeline()                         | Session |
-| close                     |   :x:        | TODO:                                             | Session |
+| close                     |   :ok:       | theDriver.Close() (calls .Close() and .Quit() on the underlying driver)                                           | Session |
 | enterText                 |   :ok:       | theDriver.SendKeys(FlutterBy)                                             | Session |
 | forceGC                   |   :ok:       | theDriver.ForceGC()                               | Session |
 | getBottomLeft             |   :ok:        | theDriver.GetBottomLeft(FlutterBy.Text("theText"))                                            | Widget  |

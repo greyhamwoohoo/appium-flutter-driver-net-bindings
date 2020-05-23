@@ -57,7 +57,12 @@ namespace Appium.Flutter.SystemTests
         [TestCleanup]
         public void Cleanup()
         {
-            FlutterDriver?.WrappedDriver?.Quit();
+            // I *THINK* .Close() is meant to purge everything... 
+            FlutterDriver.Close();
+
+            // ... if you want to control the two separate operations, call:
+            // FlutterDriver?.WrappedDriver?.Close();
+            // FlutterDriver?.WrappedDriver?.Quit();
         }
     }
 }

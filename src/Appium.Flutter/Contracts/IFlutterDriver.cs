@@ -28,6 +28,7 @@ namespace Appium.Flutter.Contracts
         void WaitForAbsent(FlutterBy by, int timeoutInSeconds);
         void SendKeys(FlutterBy by, string keys);
         void Clear(FlutterBy by);
+        void Close();
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }
