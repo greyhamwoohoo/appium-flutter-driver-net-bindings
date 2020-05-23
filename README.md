@@ -45,10 +45,10 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | ------------------------- | ------------ | ------------------------------------------------- | ------- |
 | FlutterDriver.connectedTo |   :ok:       | var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");<br>var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));<br>var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);<br>var fd = new FlutterDriver(webDriver, commandExecutor) | Session |
 | checkHealth               |   :ok:       | theDriver.CheckHealth()                           | Session |
-| clearTextbox              |   :x:        | TODO:                                             | Session |
+| clearTextbox              |   :ok:       | theDriver.Clear(FlutterBy)                                             | Session |
 | clearTimeline             |   :ok:       | theDriver.ClearTimeline()                         | Session |
 | close                     |   :x:        | TODO:                                             | Session |
-| enterText                 |   :x:        | TODO:                                             | Session |
+| enterText                 |   :ok:       | theDriver.SendKeys(FlutterBy)                                             | Session |
 | forceGC                   |   :ok:       | theDriver.ForceGC()                               | Session |
 | getBottomLeft             |   :ok:        | theDriver.GetBottomLeft(FlutterBy.Text("theText"))                                            | Widget  |
 | getBottomRight            |   :ok:       | theDriver.GetBottomRight(FlutterBy.Text("theText"))                                             | Widget  |
@@ -56,7 +56,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | getRenderObjectDiagnostics|   :ok:       | theDriver.GetRenderObjectDiagnostics(FlutterBy.ValueKey("counter"), includeProperties: true, subtreeDepth: 1)                                             | Widget  |
 | getRenderTree             |   :ok:       | theDriver.GetRenderTree()                         | Session |
 | getSemanticsId            |   :ok:       | theDriver.GetSemanticsId(FlutterBy.ValueKey("counter"))                                        | Widget  |
-| getText                   |   :ok:       | theDriver.GetElementText(counterTextFinder)       | Widget  |
+| getText                   |   :ok:       | theDriver.GetText(counterTextFinder)       | Widget  |
 | getTopLeft                |   :ok:       | theDriver.GetTopLeft(FlutterBy.Text("theText"))                                             | Widget  |
 | getTopRight               |   :ok:        | theDriver.GetTopRight(FlutterBy.Text("theText"))                                             | Widget  |
 | getVmFlags                |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
@@ -92,7 +92,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | The Thing | The Description |
 | --------- | --------------- |
 | FlutterBy.XXX times out if an element is not found | Other than WaitFor (and WaitForAbsent), none of the operations seem to accept a Timeout. So if an element does not exist, for example, a Timeout exception is thrown on the call - the timeout is the value passed to the HttpCommandExecutor at construction time<br><br>I guess all of the operations would ideally accept a Timeout parameter |
-| WaitFor/WaitForAbsent (NodeJs) { durationMilliseconds : ... } structure is not the correct parameter | The Flutter Driver API seems to expect timeout (seconds) as a numeric parameter; not milliseconds as a structure in the form { durationMilliseconds : ... } |
+| WaitFor/WaitForAbsent (NodeJs) { durationMilliseconds : ... } structure is not the correct parameter | The Flutter Driver API seems to expect timeout (seconds) as a numeric parameter; not milliseconds as a structure in the form { durationMilliseconds : ... } which the tests indicate. |
 | My WaitFor/WaitForAbsent throw very generic WebDriver exceptions | Capture, wrap and rethrow |
 
 ## References

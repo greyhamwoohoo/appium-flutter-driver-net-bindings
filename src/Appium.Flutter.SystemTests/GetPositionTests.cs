@@ -1,5 +1,5 @@
-﻿using Appium.Flutter.Bounds;
-using Appium.Flutter.Finder;
+﻿using Appium.Flutter.Finder;
+using Appium.Flutter.Models;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;

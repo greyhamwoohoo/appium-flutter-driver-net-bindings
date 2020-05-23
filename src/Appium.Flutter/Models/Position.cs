@@ -1,4 +1,4 @@
-﻿namespace Appium.Flutter.Bounds
+﻿namespace Appium.Flutter.Models
 {
     public class Position
     {

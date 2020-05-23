@@ -1,6 +1,6 @@
-﻿using Appium.Flutter.Bounds;
-using Appium.Flutter.Contracts;
+﻿using Appium.Flutter.Contracts;
 using Appium.Flutter.Finder;
+using Appium.Flutter.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Remote;
@@ -69,7 +69,7 @@ namespace Appium.Flutter
             return $"{result}";
         }
 
-        public string GetElementText(FlutterBy by)
+        public string GetText(FlutterBy by)
         {
             if (null == by) throw new System.ArgumentNullException(nameof(by));
 
@@ -329,6 +329,27 @@ namespace Appium.Flutter
             
             // TODO: Can we capture and forward on a more useful error message?
             ExecuteScript("flutter:waitForAbsent", by.ToBase64(), timeoutInSeconds);
+        }
+
+        public void SendKeys(FlutterBy by, string keys)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+           
+            Execute(DriverCommand.SendKeysToElement, new Dictionary<string, object>()
+            {
+                { "id", by.ToBase64() },
+                { "text", keys }
+            });
+        }
+
+        public void Clear(FlutterBy by)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            Execute(DriverCommand.ClearElement, new Dictionary<string, object>()
+            {
+                { "id", by.ToBase64() }
+            });
         }
 
         #endregion

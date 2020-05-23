@@ -1,5 +1,5 @@
-﻿using Appium.Flutter.Bounds;
-using Appium.Flutter.Finder;
+﻿using Appium.Flutter.Finder;
+using Appium.Flutter.Models;
 using OpenQA.Selenium.Internal;
 using System.Collections.Generic;
 
@@ -12,7 +12,7 @@ namespace Appium.Flutter.Contracts
         object ExecuteScript(string script, params object[] args);
         void ForceGC();
         string GetRenderTree();
-        string GetElementText(FlutterBy by);
+        string GetText(FlutterBy by);
         void Click(FlutterBy by);
         long GetSemanticsId(FlutterBy by);
         Position GetBottomLeft(FlutterBy by);
@@ -26,6 +26,8 @@ namespace Appium.Flutter.Contracts
         void WaitFor(FlutterBy by, int timeoutInSeconds);
         void WaitForAbsent(FlutterBy by);
         void WaitForAbsent(FlutterBy by, int timeoutInSeconds);
+        void SendKeys(FlutterBy by, string keys);
+        void Clear(FlutterBy by);
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

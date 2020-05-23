@@ -114,6 +114,48 @@ class FindersTestPage extends StatefulWidget {
   _FindersTestPageState createState() => _FindersTestPageState();
 }
 
+class _TextFieldsTestPageState extends State<TextFieldsTestPage> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          leading: BackButton(
+            key: Key('backToHomePage'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            'Text Fields Test Page',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter some text'
+              ),
+            ),
+          ],
+        ),
+      ));
+  }
+}
+
+class TextFieldsTestPage extends StatefulWidget {
+  TextFieldsTestPage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _TextFieldsTestPageState createState() => _TextFieldsTestPageState();
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -156,6 +198,13 @@ class _HomePageState extends State<HomePage> {
                     context, MaterialPageRoute(builder: (context) => FindersTestPage()));                
               },
               child: Text("Navigate to Finders and Position Test Page")
+            ),
+            OutlineButton(
+              onPressed: () { 
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => TextFieldsTestPage()));                
+              },
+              child: Text("Navigate to Text Fields Test Page")
             ),
           ],
         ),

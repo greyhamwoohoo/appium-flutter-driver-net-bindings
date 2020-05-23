@@ -78,7 +78,7 @@ namespace Appium.Flutter.SystemTests
 
         private void AssertCounterIs(string value, string because)
         {
-            var result = FlutterDriver.GetElementText(FlutterBy.ValueKey("counter"));
+            var result = FlutterDriver.GetText(FlutterBy.ValueKey("counter"));
             result.Should().Be(value, because);
         }
     }
