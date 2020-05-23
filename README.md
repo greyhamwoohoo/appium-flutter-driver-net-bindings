@@ -75,8 +75,8 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | tap                       |   :ok:       | theDriver.Click(FlutterBy by)                                             | Widget  |
 | tap                       |   :x:        | TODO:                                             | Widget  |
 | traceAction               |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
-| waitFor                   |   :x:        | TODO:                                             | Widget  |
-| waitForAbsent             |   :x:        | TODO:                                             | Widget  |
+| waitFor                   |   :ok:       | theDriver.WaitFor(FlutterBy.Text("something"))                                             | Widget  |
+| waitForAbsent             |   :ok:       | theDriver.WaitForAbsent(FlutterBy.Text("something"))                                             | Widget  |
 | waitUntilNoTransientCallbacks|   :x:     | (Pending appium-flutter-driver implementation)                                             | Widget  |
 | :question:                |   :x:        | setContext                                        | Appium  |
 | :question:                |   :warning:  | getCurrentText                                    | Appium  |
@@ -91,8 +91,9 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ## Observations
 | The Thing | The Description |
 | --------- | --------------- |
-| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) <br><br>Searching for another element afterwards (without restarting/resetting the app) also appears to cause a timeout. |
-| WaitFor also throws TimeOut | As above: not sure whether the flutter driver or the consumer (ie: this library) is responsible for reshaping the exception. Will investigate. |
+| FlutterBy.XXX times out if an element is not found | Other than WaitFor (and WaitForAbsent), none of the operations seem to accept a Timeout. So if an element does not exist, for example, a Timeout exception is thrown on the call - the timeout is the value passed to the HttpCommandExecutor at construction time<br><br>I guess all of the operations would ideally accept a Timeout parameter |
+| WaitFor/WaitForAbsent (NodeJs) { durationMilliseconds : ... } structure is not the correct parameter | The Flutter Driver API seems to expect timeout (seconds) as a numeric parameter; not milliseconds as a structure in the form { durationMilliseconds : ... } |
+| My WaitFor/WaitForAbsent throw very generic WebDriver exceptions | Capture, wrap and rethrow |
 
 ## References
 | Reference | Link |

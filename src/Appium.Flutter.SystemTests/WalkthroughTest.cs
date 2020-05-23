@@ -1,5 +1,4 @@
-﻿using Appium.Flutter.Contracts;
-using Appium.Flutter.Finder;
+﻿using Appium.Flutter.Finder;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,9 +6,6 @@ using System.Collections.Generic;
 
 namespace Appium.Flutter.SystemTests
 {
-    /// <summary>
-    /// TODO:Create a simple to test each of the commands separately
-    /// </summary>
     [TestClass]
     public class WalkthroughTest : TestBase
     {

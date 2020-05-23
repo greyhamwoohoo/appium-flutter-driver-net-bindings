@@ -23,6 +23,9 @@ namespace Appium.Flutter.Contracts
         byte[] Screenshot();
         void Screenshot(string path);
         void WaitFor(FlutterBy by);
+        void WaitFor(FlutterBy by, int timeoutInSeconds);
+        void WaitForAbsent(FlutterBy by);
+        void WaitForAbsent(FlutterBy by, int timeoutInSeconds);
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

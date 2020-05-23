@@ -39,7 +39,8 @@ namespace Appium.Flutter.SystemTests
             var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));
             var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);
 
-            var fd = new FlutterDriver(webDriver, commandExecutor, webDriver.SessionId);
+            // NOTE: ElementTimeoutInSeconds is the default only for WaitFor and WaitForAbsent at the moment
+            var fd = new FlutterDriver(webDriver, commandExecutor, elementTimeoutInSeconds: 30);
             return fd;
         }
 
@@ -51,10 +52,6 @@ namespace Appium.Flutter.SystemTests
         public void Setup()
         {
             FlutterDriver = StartApplication();
-
-            // Now wait until the test application is displayed (hackey)
-            // TODO: Replace with WaitFor(...)
-
         }
 
         [TestCleanup]

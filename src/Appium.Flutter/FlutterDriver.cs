@@ -14,14 +14,16 @@ namespace Appium.Flutter
     {
         protected SessionId SessionId { get; }
         protected ICommandExecutor CommandExecutor { get; }
+        protected int ElementTimeoutInSeconds { get; }
 
         public IWebDriver WrappedDriver { get; }
 
-        public FlutterDriver(IWebDriver driver, ICommandExecutor commandExecutor, SessionId sessionId)
+        public FlutterDriver(RemoteWebDriver driver, ICommandExecutor commandExecutor, int elementTimeoutInSeconds)
         {
             WrappedDriver = driver ?? throw new System.ArgumentNullException(nameof(driver));
             CommandExecutor = commandExecutor ?? throw new System.ArgumentNullException(nameof(commandExecutor));
-            SessionId = sessionId ?? throw new System.ArgumentNullException(nameof(sessionId));
+            SessionId = driver.SessionId;
+            ElementTimeoutInSeconds = elementTimeoutInSeconds;
         }
 
         public object ExecuteScript(string script, params object[] args)
@@ -304,9 +306,29 @@ namespace Appium.Flutter
 
         public void WaitFor(FlutterBy by)
         {
+            WaitFor(by, timeoutInSeconds: ElementTimeoutInSeconds);
+        }
+
+        public void WaitFor(FlutterBy by, int timeoutInSeconds)
+        {
             if (null == by) throw new System.ArgumentNullException(nameof(by));
 
-            ExecuteScript("flutter:waitFor", by.ToBase64());
+            // TODO: Can we capture and forward on a more useful error message?
+            ExecuteScript("flutter:waitFor", by.ToBase64(), timeoutInSeconds);
+        }
+
+        public void WaitForAbsent(FlutterBy by)
+        {
+            WaitForAbsent(by, ElementTimeoutInSeconds);
+        }
+
+        public void WaitForAbsent(FlutterBy by, int timeoutInSeconds)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+            if (timeoutInSeconds < 0) throw new System.ArgumentOutOfRangeException(nameof(timeoutInSeconds), $"TimeoutInSeconds must be > 0");
+            
+            // TODO: Can we capture and forward on a more useful error message?
+            ExecuteScript("flutter:waitForAbsent", by.ToBase64(), timeoutInSeconds);
         }
 
         #endregion

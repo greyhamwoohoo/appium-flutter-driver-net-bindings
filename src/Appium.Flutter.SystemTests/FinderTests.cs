@@ -4,9 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Appium.Flutter.SystemTests
 {
-    /// <summary>
-    /// TODO:Create a simple to test each of the commands separately
-    /// </summary>
     [TestClass]
     public class FinderTests : TestBase
     {
@@ -77,20 +74,6 @@ namespace Appium.Flutter.SystemTests
             var semanticsId = FlutterDriver.GetSemanticsId(FlutterBy.Type("FlatButton"));
 
             semanticsId.Should().NotBe(0);
-        }
-
-        [TestMethod]
-        public void WaitFor_ByScript()
-        {
-            // TODO: This throws a Timeout exception if the element is not found (should it be NoSuchElement or otherwise?)
-            FlutterDriver.ExecuteScript("flutter:waitFor", FlutterBy.Text("FUT: FlutterBy.Text (Increment 1)").ToBase64());
-        }
-
-        [TestMethod]
-        public void WaitFor_Driver()
-        {
-            // TODO: This throws a Timeout exception if the element is not found (should it be NoSuchElement or otherwise?)
-            FlutterDriver.WaitFor(FlutterBy.Text("FUT: FlutterBy.Text (Increment 1)"));
         }
 
         private void AssertCounterIs(string value, string because)
