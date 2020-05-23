@@ -22,6 +22,7 @@ namespace Appium.Flutter.Contracts
         Position GetCenter(FlutterBy by);
         byte[] Screenshot();
         void Screenshot(string path);
+        void WaitFor(FlutterBy by);
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

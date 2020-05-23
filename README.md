@@ -37,7 +37,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | byType             |   :ok: | :ok:       | :ok:          |
 | byValueKey         |   :ok: | :ok:       | :ok:          |
 | descendent         |   :x:  | :x:        | :x:          |
-| pageBack           |   :x:  | :ok:       | :x:          |
+| pageBack           |   :ok: | :ok:       | :ok:          |
 | text               |   :ok: | :ok:       | :ok:          |
 
 ### Commands
@@ -91,7 +91,8 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ## Observations
 | The Thing | The Description |
 | --------- | --------------- |
-| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) <br><br>Searching for another element (without restarting/resetting the app) also appears to cause a timeout. |
+| FlutterBy.XXX times out if an element is not found | When doing something like FlutterDriver.GetElementText(FlutterBy.ValueKey("whatever")), if the element cannot be found I am getting a Timeout (as an exception; the Appium logs are silent on the not found) <br><br>Searching for another element afterwards (without restarting/resetting the app) also appears to cause a timeout. |
+| WaitFor also throws TimeOut | As above: not sure whether the flutter driver or the consumer (ie: this library) is responsible for reshaping the exception. Will investigate. |
 
 ## References
 | Reference | Link |

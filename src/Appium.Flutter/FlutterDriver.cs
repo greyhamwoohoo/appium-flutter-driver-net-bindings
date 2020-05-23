@@ -302,6 +302,13 @@ namespace Appium.Flutter
             System.IO.File.WriteAllBytes(path, result);
         }
 
+        public void WaitFor(FlutterBy by)
+        {
+            if (null == by) throw new System.ArgumentNullException(nameof(by));
+
+            ExecuteScript("flutter:waitFor", by.ToBase64());
+        }
+
         #endregion
 
         private Position GetAndAssertPositionResult(FlutterBy by, string position)
