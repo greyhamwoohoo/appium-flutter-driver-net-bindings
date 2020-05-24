@@ -1,0 +1,55 @@
+trigger: 
+- master
+pr: none
+
+variables:
+# Variable Group Contains: 
+#   SemanticMajorVersion, 
+#   SemanticMinorVersion
+- group: appium-flutter-driver-net-bindings-variables
+# Variable Group Contains:
+#   NugetPushKey
+- group: interface-interceptor-core-secrets
+- name: Build.Configuration
+  value: Release
+- name: System.Debug
+  value: true
+- name: SemanticPatchVersion
+  value: $[ counter(format('{0}.{1}', variables['SemanticMajorVersion'], variables['SemanticMinorVersion']), 1) ]
+
+name: $(SemanticMajorVersion).$(SemanticMinorVersion).$(SemanticPatchVersion)-beta
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: ubuntu-18.04
+
+    steps:
+    - template: templates/restore-and-build.yml
+    - template: templates/run-tests-from-projects.yml
+    - template: templates/nuget-pack.yml        
+    - template: templates/nuget-push-to-internal-feed.yml
+    - template: templates/nuget-push-to-build-artifacts.yml
+
+- stage: PublishToPublicNugetOrg
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment:
+    pool:
+      vmImage: windows-latest
+    environment: Production-Nuget-Org
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: NuGetToolInstaller@1
+          - download: current
+            artifact: PublishableNugetPackage
+          - powershell: |
+              nuget.exe help
+              nuget.exe push -Source "https://api.nuget.org/v3/index.json" -ApiKey "$(NugetPushKey)" "$($env:Pipeline_Workspace)/PublishableNugetPackage/GreyhamWooHoo.FlutterDriver.$($env:Build_BuildNumber).nupkg" 
+            failOnStderr: true
+            workingDirectory: '$(Pipeline.Workspace)'
+            displayName: 'Publish to Public nuget.org'

@@ -10,12 +10,14 @@
     <PackageProjectUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</PackageProjectUrl>
     <RepositoryUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</RepositoryUrl>
     <PackageReleaseNotes>0.0.x
-- ALPHA: Inital release to NuGET (Golden Thread)
+- PRE-RELEASED: Inital release to NuGET (Golden Thread)
 </PackageReleaseNotes>
     <PackageLicenseFile></PackageLicenseFile>
     <Description>.Net Bindings for https://github.com/truongsinh/appium-flutter-driver
 
-See README.md for compatibility and known issues</Description>
+This is a *PRE-RELEASE* Version ("golden thread")
+
+See README.md in this Github project for known issues and project state (https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings)</Description>
     <PackageTags>Testing;Appium;Flutter;Selenium</PackageTags>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
