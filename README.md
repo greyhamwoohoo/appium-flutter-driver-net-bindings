@@ -1,12 +1,12 @@
 # appium-flutter-driver-net-bindings
 .Net Bindings for https://github.com/truongsinh/appium-flutter-driver
 
-# STATUS: VERY MUCH A WORK IN PROGRESS!
-This is a spike/poc for my needs at the moment; the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. Expect breaking changes. 
+# STATUS: Beta (Work in Progress)
+This implementation is in a beta state for my needs at the moment; the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. 
 
-This is currently in 'Bootstrapping' mode: finders are in place, a few key session methods and a few commands. 
+Forewarned is forearmed: Expect breaking changes on both ends! 
 
-Android is the focus for now. 
+# Getting Started
 
 ## Version Compatibility Check
 This is very much a work in progress against Appium v1.17.1 and appium-flutter-driver@0.0.23. 
@@ -24,10 +24,22 @@ You will want to see something like this:
   -- appium-flutter-driver@0.0.23
 ```
 
-## Progress
+## Tests as Reference
+The easiest way to get started is to look at the .SystemTests project: they will always be the source of truth on how these bindings work. You will need to build the test app and change the path. 
+
+See TestBase.cs for how to manage the lifecycle of a FlutterDriver. 
+
+Appium... can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
+
+## Test App
+I wrote a simple Flutter test application that can be found in the Appium.Flutter.TestApp/howdi_welt folder. 
+
+All tests rely on that application being built. 
+
+# Progress
 I will use the same progress structure as 'appium-flutter-driver' to help track parity. 
 
-### Finders
+## Finders
 | Flutter Driver API | Status | Unit Tests | System Tests |
 | ------------------ | ------ | ---------- | ------------ |
 | ancestor           |   :x:  | :x:        | :x:          |
@@ -40,7 +52,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | pageBack           |   :ok: | :ok:       | :ok:          |
 | text               |   :ok: | :ok:       | :ok:          |
 
-### Commands
+## Commands
 | Flutter API               | System Tests | WebDriver Example                                 | Scope   | 
 | ------------------------- | ------------ | ------------------------------------------------- | ------- |
 | FlutterDriver.connectedTo |   :ok:       | var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");<br>var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(60));<br>var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);<br>var fd = new FlutterDriver(webDriver, commandExecutor) | Session |
@@ -73,7 +85,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | startTracing              |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
 | stopTracingAndDownloadTimeline|   :x:    | (Pending appium-flutter-driver implementation)                                             | Session |
 | tap                       |   :ok:       | theDriver.Click(FlutterBy by)                                             | Widget  |
-| tap                       |   :x:        | TODO:                                             | Widget  |
+| tap                       |   :ok:       | new FlutterTouchActions().Tap(); new FlutterTouchActions().LongPress();                                             | Widget  |
 | traceAction               |   :x:        | (Pending appium-flutter-driver implementation)                                             | Session |
 | waitFor                   |   :ok:       | theDriver.WaitFor(FlutterBy.Text("something"))                                             | Widget  |
 | waitForAbsent             |   :ok:       | theDriver.WaitForAbsent(FlutterBy.Text("something"))                                             | Widget  |
@@ -83,7 +95,7 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | :question:                |   :warning:  | getContexts                                       | Appium  |
 | :question:                |   :x:        | longTap                                           | Widget  |
 
-## Stream of Conciousness
+# Stream of Conciousness
 | Musing | Mumblings |
 | ------ | --------- |
 | Decorate or Isolate | I have chosen to design the solution (at present) by making  the .Net IFlutterDriver expose only the commands, methods and properties that Flutter Driver supports. <br><br>I am not using inheritance, deriving from or decorating any Selenium or Appium classes with extension methods unless I have to<br><br>Rationale: As there will likely be changes to 'appium-flutter-driver' and as there are many changes between the .Net Selenium 3 and 4 code bases, this approach seems the most resilient choice for consumers right now. <br><br>Providing the tests stick to consuming IFlutterDriver, the part most likely to change in future is the FlutterDriver construction. |
@@ -91,13 +103,13 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ## Observations
 | The Thing | The Description |
 | --------- | --------------- |
-| FlutterBy.XXX times out if an element is not found | Other than WaitFor (and WaitForAbsent), none of the operations seem to accept a Timeout. So if an element does not exist, for example, a Timeout exception is thrown on the call - the timeout is the value passed to the HttpCommandExecutor at construction time<br><br>I guess all of the operations would ideally accept a Timeout parameter |
-| WaitFor/WaitForAbsent (NodeJs) { durationMilliseconds : ... } structure is not the correct parameter | The Flutter Driver API seems to expect timeout (seconds) as a numeric parameter; not milliseconds as a structure in the form { durationMilliseconds : ... } which the tests indicate. |
+| FlutterBy.XXX times out if an element is not found | Other than WaitFor (and WaitForAbsent), I am not sure if the other appium-flutter-driver operations accept a Timeout (they seem to wait forever and obviously timeout based on the parameters passed to the HttpCommandExecutor). <br><br>I guess all of the operations would ideally accept a Timeout parameter; maybe they do. Will investigate more. |
+| appium-flutter-driver WaitFor/WaitForAbsent (NodeJs) tests do not seem to match the expectations of the implementation | The appium-flutter-driver works well if a 'seconds' parameter is passed in; however, if the structure is passed in (as the appium-flutter-driver NodeJS tests would indicate - { durationMilliseconds: xxx }) then the driver throws an exception. Will investigate further and raise an issue upstream. <br><br>At the moment, I hide the implementation problem by always sending a seconds parameter to appium-flutter-driver |
 | My WaitFor/WaitForAbsent throw very generic WebDriver exceptions | Capture, wrap and rethrow |
+| appium-flutter-driver .touchAction does not seem to work correctly for multiple actions | I was unable to get press, release and wait to work when issued in sequence; including using the NodeJS tests. Will investigate. |
 
 ## References
 | Reference | Link |
 | --------- | ---- |
 | Appium Flutter Driver | https://github.com/truongsinh/appium-flutter-driver | 
-| Appium Flutter Driver Test App | https://github.com/truongsinh/appium-flutter-driver/releases/download/v0.0.4/android-real-debug.apk |
 | Flutter App Automation with Appium Flutter Driver<br><br>Got me up and running quickly with test app scaffolding, too | https://dev.to/netfirms/flutter-app-testing-with-appium-flutter-driver-33ko |

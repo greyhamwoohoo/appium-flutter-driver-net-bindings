@@ -1,12 +1,18 @@
 ﻿using Appium.Flutter.Contracts;
 using Appium.Flutter.Finder;
+using Appium.Flutter.Interactions;
+using Appium.Flutter.Interactions.Contracts;
 using Appium.Flutter.Models;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Appium.Interfaces;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Appium.Flutter
 {
@@ -354,10 +360,43 @@ namespace Appium.Flutter
 
         public void Close()
         {
-            WrappedDriver?.Close();
-            WrappedDriver?.Quit();
+            throw new System.NotImplementedException($"Flutter Driver .Close() is not implemented. Call .Close and .Quit on the WrappedDriver yourself to control its lifetime. ");
         }
 
+        public void Perform(IFlutterTouchActions actions)
+        {
+            if (null == actions) throw new ArgumentNullException(nameof(actions));
+
+            var performTouchActions = WrappedDriver as IPerformsTouchActions;
+            if (null == performTouchActions) throw new InvalidOperationException($"The WrappedDriver does not support the IPerformsTouchActions interface. Ensure the RemoteWebDriver passed to FlutterDriver implements that interface. ");
+
+            if (actions.IsMultiAction)
+            {
+                /* For Reference:
+                   PerformMultiAction throws NotImplementedException. 
+
+                    var parameters = actions.ToTouchAction().GetParameters();
+
+                    Execute(AppiumDriverCommand.PerformMultiAction, new Dictionary<String, object>() 
+                    {
+                        { "actions", parameters }
+                    });
+                */
+
+                // Passing multiple actions to PerformTouchAction does not seem to execute any of them: so I am taking the crude approach here of issuing
+                // one at a time. Not sure what the implications of this are in the upstream drivers. 
+                var touchActions = actions.ToTouchActions();
+                touchActions.ToList().ForEach(touchAction =>
+                {
+                    performTouchActions.PerformTouchAction(touchAction);
+                });
+            }
+            else
+            {
+                performTouchActions.PerformTouchAction(actions.ToTouchAction());
+            }
+        }
+        
         #endregion
 
         private Position GetAndAssertPositionResult(FlutterBy by, string position)

@@ -1,4 +1,5 @@
 ﻿using Appium.Flutter.Finder;
+using Appium.Flutter.Interactions.Contracts;
 using Appium.Flutter.Models;
 using OpenQA.Selenium.Internal;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace Appium.Flutter.Contracts
         void SendKeys(FlutterBy by, string keys);
         void Clear(FlutterBy by);
         void Close();
+
+        void Perform(IFlutterTouchActions actions);
+
         Dictionary<string, object> GetRenderObjectDiagnostics(FlutterBy by, bool includeProperties = true, int subtreeDepth = 2);
     }
 }

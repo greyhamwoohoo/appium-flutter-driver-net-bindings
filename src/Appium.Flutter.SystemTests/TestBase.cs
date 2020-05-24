@@ -57,12 +57,11 @@ namespace Appium.Flutter.SystemTests
         [TestCleanup]
         public void Cleanup()
         {
-            // I *THINK* .Close() is meant to purge everything... 
-            FlutterDriver.Close();
+            // I have not implemented this method... some RemoteWebDrviers do not implement .Close() (as below). To be safe: control destruction yourself. 
+            // FlutterDriver.Close();
 
-            // ... if you want to control the two separate operations, call:
-            // FlutterDriver?.WrappedDriver?.Close();
-            // FlutterDriver?.WrappedDriver?.Quit();
+            // FlutterDriver?.WrappedDriver?.Close() - this throws a NotImplemented exception
+            FlutterDriver?.WrappedDriver?.Quit();
         }
     }
 }
