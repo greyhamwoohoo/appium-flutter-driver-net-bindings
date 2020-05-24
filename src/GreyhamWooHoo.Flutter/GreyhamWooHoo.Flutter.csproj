@@ -2,6 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>GreyhamWooHoo.FlutterDriver</PackageId>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>GreyhamWooHoo</Authors>
+    <Product>GreyhamWooHoo.FlutterDriver</Product>
+    <Copyright>(c) 2020 GreyhamWooHoo</Copyright>
+    <PackageProjectUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</RepositoryUrl>
+    <PackageReleaseNotes>0.0.x
+- ALPHA: Inital release to NuGET (Golden Thread)
+</PackageReleaseNotes>
+    <PackageLicenseFile></PackageLicenseFile>
+    <Description>.Net Bindings for https://github.com/truongsinh/appium-flutter-driver
+
+See README.md for compatibility and known issues</Description>
+    <PackageTags>Testing;Appium;Flutter;Selenium</PackageTags>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

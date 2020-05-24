@@ -1,0 +1,11 @@
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Dotnet Restore'
+    inputs:
+      command: restore
+      projects: '**/*.sln'
+  - task: CmdLine@2
+    displayName: 'dotnet build' 
+    inputs:
+      script: 'dotnet build src/GreyhamWooHoo.Flutter.sln --configuration=$(Build.Configuration) --verbosity Detailed'       
+      

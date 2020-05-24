@@ -1,0 +1,6 @@
+steps:
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: src/GreyhamWooHoo.Flutter/bin/$(Build.Configuration)/GreyhamWooHoo.FlutterDriver.$(Build.BuildNumber).nupkg
+      artifactName: 'PublishableNugetPackage'
+  

@@ -1,0 +1,11 @@
+steps:
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'Public-Automation-Examples/Private-Internal'
+      nuGetFeedType: internal
+      allowPackageConflicts: false
+      packagesToPush: src/GreyhamWooHoo.Flutter/bin/$(Build.Configuration)/GreyhamWooHoo.FlutterDriver.$(Build.BuildNumber).nupkg
