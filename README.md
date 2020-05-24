@@ -29,10 +29,10 @@ The easiest way to get started is to look at the .SystemTests project: they will
 
 See TestBase.cs for how to manage the lifecycle of a FlutterDriver. 
 
-Appium... can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
+`Appium.`.. can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
 
 ## Test App
-I wrote a simple Flutter test application that can be found in the Appium.Flutter.TestApp/howdi_welt folder. 
+I wrote a simple Flutter test application that can be found in the GreyhamWooHoo.Flutter.TestApp/howdi_welt folder. 
 
 All tests rely on that application being built. 
 
