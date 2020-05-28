@@ -1,10 +1,20 @@
 # appium-flutter-driver-net-bindings
 .Net Bindings for https://github.com/truongsinh/appium-flutter-driver
 
-# STATUS: Beta (Work in Progress)
-This implementation is in a beta state for my needs at the moment; the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. 
+## Status - Beta (Work in Progress)
+I consider this 'Beta' at the moment (and for my needs only); the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. 
 
 Forewarned is forearmed: Expect breaking changes on both ends! 
+
+### Known Issues
+These are known issues I have encountered so far. 
+
+| Issue | Discussion |
+| ------|------------|
+| Not all appium-flutter-driver features are supported | Correct. These C# bindings will be updated over time; see Progress below more the current state of parity with appium-flutter-driver |
+| FlutterBy.XXX times out (based on HttpCommandHandler timeout) if an element cannot be found | I have not found a way of specifying timeouts to appium-flutter-driver for individual commands. |
+| waitFor/waitForAbsent does not accept millisecond parameter | I have raised an upstream issue here: https://github.com/truongsinh/appium-flutter-driver/issues/84 . I hide this issue at the moment by accepting a timeoutInSeconds parameter on my FlutterDriver.WaitFor/FlutterDriver.WaitForAbsent method. |
+| Upstream appium-flutter-driver does not seem to work with multiple .touchActions | I was not able to get a sequence of actions to work correctly - such as press; wait; release including using their nodeJs tests. Will continue to investigate. |
 
 # Getting Started
 
@@ -29,7 +39,7 @@ The easiest way to get started is to look at the .SystemTests project: they will
 
 See TestBase.cs for how to manage the lifecycle of a FlutterDriver. 
 
-`Appium.`.. can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
+`Appium`... can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
 
 ## Test App
 I wrote a simple Flutter test application that can be found in the GreyhamWooHoo.Flutter.TestApp/howdi_welt folder. 
@@ -99,14 +109,6 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 | Musing | Mumblings |
 | ------ | --------- |
 | Decorate or Isolate | I have chosen to design the solution (at present) by making  the .Net IFlutterDriver expose only the commands, methods and properties that Flutter Driver supports. <br><br>I am not using inheritance, deriving from or decorating any Selenium or Appium classes with extension methods unless I have to<br><br>Rationale: As there will likely be changes to 'appium-flutter-driver' and as there are many changes between the .Net Selenium 3 and 4 code bases, this approach seems the most resilient choice for consumers right now. <br><br>Providing the tests stick to consuming IFlutterDriver, the part most likely to change in future is the FlutterDriver construction. |
-
-## Observations
-| The Thing | The Description |
-| --------- | --------------- |
-| FlutterBy.XXX times out if an element is not found | Other than WaitFor (and WaitForAbsent), I am not sure if the other appium-flutter-driver operations accept a Timeout (they seem to wait forever and obviously timeout based on the parameters passed to the HttpCommandExecutor). <br><br>I guess all of the operations would ideally accept a Timeout parameter; maybe they do. Will investigate more. |
-| appium-flutter-driver WaitFor/WaitForAbsent (NodeJs) tests do not seem to match the expectations of the implementation | The appium-flutter-driver works well if a 'seconds' parameter is passed in; however, if the structure is passed in (as the appium-flutter-driver NodeJS tests would indicate - { durationMilliseconds: xxx }) then the driver throws an exception. Will investigate further and raise an issue upstream. <br><br>At the moment, I hide the implementation problem by always sending a seconds parameter to appium-flutter-driver |
-| My WaitFor/WaitForAbsent throw very generic WebDriver exceptions | Capture, wrap and rethrow |
-| appium-flutter-driver .touchAction does not seem to work correctly for multiple actions | I was unable to get press, release and wait to work when issued in sequence; including using the NodeJS tests. Will investigate. |
 
 ## References
 | Reference | Link |
