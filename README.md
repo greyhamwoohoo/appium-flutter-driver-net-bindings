@@ -42,9 +42,9 @@ See TestBase.cs for how to manage the lifecycle of a FlutterDriver.
 `Appium`... can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
 
 ## Test App
-I wrote a simple Flutter test application that can be found in the GreyhamWooHoo.Flutter.TestApp/howdi_welt folder. 
+I wrote a simple Flutter test application that can be found and built at https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings-test-app. That will produce the .apk we need to use in the .SystemTests. 
 
-All tests rely on that application being built. 
+All .SystemTests rely on that application being built. 
 
 # Progress
 I will use the same progress structure as 'appium-flutter-driver' to help track parity. 

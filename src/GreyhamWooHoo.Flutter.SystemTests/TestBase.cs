@@ -13,7 +13,8 @@ namespace GreyhamWooHoo.Flutter.SystemTests
     public abstract class TestBase
     {
         // public const string AndroidAppPath = @"C:\temp\android-real-debug.apk";
-        public const string AndroidAppPath = @"F:\greyhamwoohoo-private\appium-flutter-driver-net-bindings\src\GreyhamWooHoo.Flutter.TestApp\howdi_welt\build\app\outputs\apk\app.apk";
+        // See https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings-test-app for how to produce this apk
+        public const string AndroidAppPath = @"F:\greyhamwoohoo-private\appium-flutter-driver-net-bindings-test-app\src\howdi_welt\build\app\outputs\apk\debug\app-debug.apk";
 
         protected static IFlutterDriver StartApplication()
         {
