@@ -6,6 +6,9 @@ using OpenQA.Selenium.Internal;
 
 namespace GreyhamWooHoo.Flutter.SystemTests
 {
+    /// <summary>
+    /// The most superficial smoke test: this ensures the app is at least deployed 
+    /// </summary>
     [TestClass]
     public class ConstructionTests : TestBase
     {
