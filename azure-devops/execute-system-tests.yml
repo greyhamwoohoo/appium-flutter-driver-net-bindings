@@ -142,19 +142,12 @@ stages:
     # There is logic in TestBase.cs that will retry deployments to get around the 'ext.flutter.driver not found in ExtensionRPCs' error
     # FYI: To force .SystemTests to use a specific version of Android SDK, set the 'buildToolsVersion' capability. ie: buildToolsVersion=29.0.3 (see TestBase.cs)
     - powershell: |
-        Write-Host "##vso[task.setvariable variable=TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS]300"
-      displayName: 'Set TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS location'  
+        Write-Host "##vso[task.setvariable variable=TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS]60"
+      displayName: 'Set TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS to 1 minute'  
 
-    # The first test always seems to fail (Avd startup?). 
-    - task: DotNetCoreCLI@2
-      displayName: 'Dotnet Test: Construction Tests'
-      inputs:
-        command: test
-        arguments: --no-restore --no-build --configuration $(Build.Configuration) --filter "FullyQualifiedName~ConstructionTests"
-        projects: |
-          **/*SystemTests.csproj
-        
-        testRunTitle: 'Construction Tests'
+    - powershell: |
+        Write-Host "##vso[task.setvariable variable=TESTAPP_RESTART_ATTEMPTS]5"
+      displayName: 'Set TESTAPP_RESTART_ATTEMPTS to 5'        
 
     - task: DotNetCoreCLI@2
       condition: succeededOrFailed()

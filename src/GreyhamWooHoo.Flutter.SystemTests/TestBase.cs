@@ -6,6 +6,7 @@ using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
 using OpenQA.Selenium.Remote;
 using System;
+using System.Linq;
 
 namespace GreyhamWooHoo.Flutter.SystemTests
 {
@@ -54,7 +55,7 @@ namespace GreyhamWooHoo.Flutter.SystemTests
 
             // TODO: 
             var addressOfRemoteServer = new Uri("http://127.0.0.1:4723/wd/hub");
-            var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(ReadEnvironmentVariable("TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS", orFallbackTo: 120)));
+            var commandExecutor = new HttpCommandExecutor(addressOfRemoteServer, TimeSpan.FromSeconds(ReadEnvironmentVariable("TESTAPP_HTTPEXECUTOR_TIMEOUT_IN_SECONDS", orFallbackTo: 60)));
             var webDriver = new AndroidDriver<IWebElement>(commandExecutor, capabilities);
 
             // NOTE: ElementTimeoutInSeconds is the default only for WaitFor and WaitForAbsent at the moment
@@ -86,7 +87,32 @@ namespace GreyhamWooHoo.Flutter.SystemTests
         [TestInitialize]
         public void Setup()
         {
-            FlutterDriver = StartApplication();
+            // This is an attempt to get around a suspected race condition with 'ext.flutter.driver' not existing in the ExtensionRPCs
+            // This only happens on startup (and mostly in the CI/CD) - so retry until we get a successful deployment
+            //
+            // TODO: Root cause this properly through Appium and logcat
+            var numberOfRetryAttempts = ReadEnvironmentVariable("TESTAPP_RESTART_ATTEMPTS", 1);
+            System.Console.WriteLine($"Number of retry attempts: {numberOfRetryAttempts}");
+
+            foreach(var currentAttempt in Enumerable.Range(1, numberOfRetryAttempts))
+            {
+                try
+                {
+                    Console.WriteLine($"Start Attempt: {currentAttempt}");
+                    FlutterDriver = StartApplication();
+                    break;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"ERROR: Starting attempt {currentAttempt}");
+                    Console.WriteLine($"ERROR: {ex}");
+
+                    if(currentAttempt == numberOfRetryAttempts)
+                    {
+                        throw;
+                    }
+                }
+            }
         }
 
         [TestCleanup]
