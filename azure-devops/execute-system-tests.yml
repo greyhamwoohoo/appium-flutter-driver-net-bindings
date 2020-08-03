@@ -25,8 +25,8 @@ stages:
 - stage: RunSystemTests
   jobs:
   - job: RunSystemTests
-    # As there is 'WaitFor' logic in the bash scripts without a timeout, fail hard after 30 minutes. 
-    timeoutInMinutes: 90
+    # Fail hard after 60 minutes incase anything goes wrong (TODO: add a timeout on adb wait-for-device)
+    timeoutInMinutes: 60
     pool:
       vmImage: macOS-10.15
 
@@ -150,7 +150,6 @@ stages:
       displayName: 'Set TESTAPP_RESTART_ATTEMPTS to 5'        
 
     - task: DotNetCoreCLI@2
-      condition: succeededOrFailed()
       displayName: 'Dotnet Test: Run System Tests'
       inputs:
         command: test
