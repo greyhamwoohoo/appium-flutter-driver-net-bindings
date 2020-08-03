@@ -65,6 +65,19 @@ namespace GreyhamWooHoo.Flutter.SystemTests
         [TestMethod]
         public void WaitForAbsent_NeverExists_ByScript()
         {
+            // HACK: On my own box, there is no issue - but when I run this on the CI/CD I get the following error:
+            /*
+                Test method GreyhamWooHoo.Flutter.SystemTests.WaitForTests.WaitForAbsent_NeverExists_ByScript threw exception:
+                OpenQA.Selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: Cannot execute command waitForAbsent, server reponse {
+                "isError": true,
+                "response": "Timeout while executing waitForAbsent: TimeoutException after 0:00:01.000000: Future not completed\n",
+                "type": "_extensionType",
+                "method": "ext.flutter.driver"
+                } */
+
+            // To get around this, I wait for the page to 'converge' first
+            FlutterDriver.WaitFor(ControlThatAlwaysExists);
+
             // NOTE: The final parameter is in SECONDS
             FlutterDriver.ExecuteScript("flutter:waitForAbsent", ControlThatNeverExists.ToBase64(), 1);
         }

@@ -6,6 +6,14 @@ I consider this 'Beta' at the moment (and for my needs only); the 'appium-flutte
 
 Forewarned is forearmed: Expect breaking changes on both ends! 
 
+### Builds
+Several builds are included: 
+
+| Build | Result | Description |
+| ----- | ------ | ----------- |
+| release.yml | [![Build Status](https://greyhamwoohoo.visualstudio.com/Public-Automation-Examples/_apis/build/status/Appium%20Flutter%20Driver/appium-flutter-driver-net-master?branchName=master)](https://greyhamwoohoo.visualstudio.com/Public-Automation-Examples/_build/latest?definitionId=28&branchName=master) | Produces the NuGet Package and publishes to NuGET (Beta only) | 
+| execute-system-tests.yml | [![Build Status](https://greyhamwoohoo.visualstudio.com/Public-Automation-Examples/_apis/build/status/appium-flutter-driver-net-bindings-system-tests?branchName=master)](https://greyhamwoohoo.visualstudio.com/Public-Automation-Examples/_build/latest?definitionId=31&branchName=master) | (Appium) Target a [Flutter Test App](https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings-test-app) deployed to an Android AVD running in the Azure DevOps MacOS Hosted Pool |
+
 ### Known Issues
 These are known issues I have encountered so far. 
 

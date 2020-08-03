@@ -161,7 +161,7 @@ namespace GreyhamWooHoo.Flutter.SystemTests
         private Position GetPosition_ByScript(string position)
         {
             var response = FlutterDriver.ExecuteScript(position, Control.ToBase64()) as Dictionary<string, object>;
-            return new Position((double)response["dx"], (double)response["dy"]);
+            return new Position(System.Convert.ToDouble(response["dx"]), System.Convert.ToDouble(response["dy"]));
         }
 
         private void AssertPositionResultContract(object response)
