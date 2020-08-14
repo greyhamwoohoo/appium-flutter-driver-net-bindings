@@ -1,8 +1,17 @@
-# appium-flutter-driver-net-bindings
-.Net Bindings for https://github.com/truongsinh/appium-flutter-driver
+# appium-flutter-driver-net-bindings (Beta)
+.Net Bindings for https://github.com/truongsinh/appium-flutter-driver. 
+
+This is tested only with these versions:
+
+```
+npm ls -g appium-flutter-driver
+
++-- appium@1.18.0
+  `-- appium-flutter-driver@0.0.23
+```
 
 ## Status - Beta (Work in Progress)
-I consider this 'Beta' at the moment (and for my needs only); the 'appium-flutter-driver' that these .Net bindings rely on is (in the above authors words!) an experimental 'pre-0.1.x version'. 
+The 'appium-flutter-driver' that these .Net bindings rely on is (in the original authors words!) an experimental 'pre-0.1.x version'. 
 
 Forewarned is forearmed: Expect breaking changes on both ends! 
 
@@ -21,8 +30,8 @@ These are known issues I have encountered so far.
 | ------|------------|
 | Not all appium-flutter-driver features are supported | Correct. These C# bindings will be updated over time; see Progress below more the current state of parity with appium-flutter-driver |
 | FlutterBy.XXX times out (based on HttpCommandHandler timeout) if an element cannot be found | I have not found a way of specifying timeouts to appium-flutter-driver for individual commands. |
-| waitFor/waitForAbsent does not accept millisecond parameter | I have raised an upstream issue here: https://github.com/truongsinh/appium-flutter-driver/issues/84 . I hide this issue at the moment by accepting a timeoutInSeconds parameter on my FlutterDriver.WaitFor/FlutterDriver.WaitForAbsent method. |
 | Upstream appium-flutter-driver does not seem to work with multiple .touchActions | I was not able to get a sequence of actions to work correctly - such as press; wait; release including using their nodeJs tests. Will continue to investigate. |
+| Upstream appium-flutter-driver does not seem to work with descendant/ancestor finders | I was not able to get any of these calls working - so have not included in the C# bindings for now |
 
 # Getting Started
 
@@ -38,14 +47,14 @@ npm ls -g appium-flutter-driver
 You will want to see something like this:
 
 ```
--- appium@1.17.1
-  -- appium-flutter-driver@0.0.23
++-- appium@1.18.0
+  `-- appium-flutter-driver@0.0.23
 ```
 
 ## Tests as Reference
 The easiest way to get started is to look at the .SystemTests project: they will always be the source of truth on how these bindings work. You will need to build the test app and change the path. 
 
-See TestBase.cs for how to manage the lifecycle of a FlutterDriver. 
+See TestBase.cs for how to manage the lifecycle of a FlutterDriver.
 
 `Appium`... can be a bit traumatic to set up if you have never used it before. I recommend setting up Appium separately before trying to use these driver bindings!
 

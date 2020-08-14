@@ -9,13 +9,13 @@
     <Copyright>(c) 2020 GreyhamWooHoo</Copyright>
     <PackageProjectUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</PackageProjectUrl>
     <RepositoryUrl>https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings</RepositoryUrl>
-    <PackageReleaseNotes>0.0.x
-- PRE-RELEASED: Inital release to NuGET (Golden Thread)
+    <PackageReleaseNotes>0.0.8-beta
+- Initial Release
 </PackageReleaseNotes>
     <PackageLicenseFile></PackageLicenseFile>
     <Description>.Net Bindings for https://github.com/truongsinh/appium-flutter-driver
-
-This is a *PRE-RELEASE* Version ("golden thread")
+    
+Tested only with Appium@1.18.0 and appium-flutter-driver@1.0.23
 
 See README.md in this Github project for known issues and project state (https://github.com/greyhamwoohoo/appium-flutter-driver-net-bindings)</Description>
     <PackageTags>Testing;Appium;Flutter;Selenium</PackageTags>
