@@ -25,7 +25,7 @@ namespace GreyhamWooHoo.Flutter.Finder
             FinderType = "ByValueKey";
         }
 
-        protected override string ToJson()
+        protected internal override string ToJson()
         {
             var asJson = System.Text.Json.JsonSerializer.Serialize(this);
             return asJson;

@@ -411,11 +411,6 @@ namespace GreyhamWooHoo.Flutter
                 throw new System.InvalidOperationException($"The response was of type Dictionary<string, object> but did not contain both a 'dx' and 'dy' property as expected. ");
             }
 
-            dictionary.ToList().ForEach(pair =>
-            {
-                Console.WriteLine($"key: {pair.Key}, value: {pair.Value}");
-            });
-
             return new Position(dx: System.Convert.ToDouble(dictionary["dx"]), dy: System.Convert.ToDouble(dictionary["dy"]));
         }
     }

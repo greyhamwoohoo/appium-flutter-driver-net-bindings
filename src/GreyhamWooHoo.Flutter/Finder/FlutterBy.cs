@@ -5,7 +5,7 @@ namespace GreyhamWooHoo.Flutter.Finder
 {
     public abstract class FlutterBy
     {
-        protected abstract string ToJson();
+        protected internal abstract string ToJson();
 
         public virtual string ToBase64()
         {
@@ -51,6 +51,16 @@ namespace GreyhamWooHoo.Flutter.Finder
         public static FlutterBy SemanticsLabel(string label)
         {
             return new FlutterBySemanticsLabel(label);
+        }
+
+        public static FlutterBy Descendant(FlutterBy of, FlutterBy matching, bool matchRoot)
+        {
+            return new FlutterByDescendant(of, matching, matchRoot);
+        }
+
+        public static FlutterBy Ancestor(FlutterBy of, FlutterBy matching, bool matchRoot)
+        {
+            return new FlutterByAncestor(of, matching, matchRoot);
         }
     }
 }

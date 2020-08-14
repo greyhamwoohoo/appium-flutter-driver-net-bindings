@@ -90,7 +90,10 @@ namespace GreyhamWooHoo.Flutter.SystemTests
             // This is an attempt to get around a suspected race condition with 'ext.flutter.driver' not existing in the ExtensionRPCs
             // This only happens on startup (and mostly in the CI/CD) - so retry until we get a successful deployment
             //
-            // TODO: Root cause this properly through Appium and logcat
+            // NOTE: It looks like this might be addressed in 1.0.25 - see the maxRetryCount capability here:
+            // https://github.com/truongsinh/appium-flutter-driver
+            // 
+            // In v1.0.23, we need to roll our own retries here. 
             var numberOfRetryAttempts = ReadEnvironmentVariable("TESTAPP_RESTART_ATTEMPTS", 1);
             System.Console.WriteLine($"Number of retry attempts: {numberOfRetryAttempts}");
 

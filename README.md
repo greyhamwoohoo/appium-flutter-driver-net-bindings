@@ -60,13 +60,13 @@ I will use the same progress structure as 'appium-flutter-driver' to help track 
 ## Finders
 | Flutter Driver API | Status | Unit Tests | System Tests |
 | ------------------ | ------ | ---------- | ------------ |
-| ancestor           |   :x:  | :x:        | :x:          |
+| ancestor           |   :x:  | :ok:       | :x:          |
 | bySemanticsLabel   |   :ok: | :ok:       | :ok:          |
 | bySemanticsLabel (Regular Expression)  |   :x:  | :x:        | :x:          |
 | byTooltip          |   :ok: | :ok:       | :ok:          |
 | byType             |   :ok: | :ok:       | :ok:          |
 | byValueKey         |   :ok: | :ok:       | :ok:          |
-| descendent         |   :x:  | :x:        | :x:          |
+| descendent         |   :x:  | :ok:       | :x:          |
 | pageBack           |   :ok: | :ok:       | :ok:          |
 | text               |   :ok: | :ok:       | :ok:          |
 

@@ -17,7 +17,7 @@ namespace GreyhamWooHoo.Flutter.Finder
             IsRegExp = false;
         }
 
-        protected override string ToJson()
+        protected internal override string ToJson()
         {
             var asJson = System.Text.Json.JsonSerializer.Serialize(this);
             return asJson;

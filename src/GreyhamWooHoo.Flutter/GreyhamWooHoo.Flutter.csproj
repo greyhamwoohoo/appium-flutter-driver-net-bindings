@@ -24,6 +24,7 @@ See README.md in this Github project for known issues and project state (https:/
 
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver" Version="4.1.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
   </ItemGroup>
