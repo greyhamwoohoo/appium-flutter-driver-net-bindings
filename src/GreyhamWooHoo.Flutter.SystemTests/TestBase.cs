@@ -24,7 +24,7 @@ namespace GreyhamWooHoo.Flutter.SystemTests
                 if(result == "%TESTAPP_PATH%")
                 {
                     result = @"C:\dev.git\appium-flutter-driver-net-bindings-test-app\src\howdi_welt\build\app\outputs\apk\debug\app-debug.apk";
-                    result = @"C:\Users\Graham\Downloads\app-debug.apk";
+                    //result = @"C:\Users\Graham\Downloads\app-debug.apk";
                 }
                 return result;
             }
@@ -51,6 +51,7 @@ namespace GreyhamWooHoo.Flutter.SystemTests
             capabilities.AddAdditionalCapability("adbExecTimeout", 60000);
             capabilities.AddAdditionalCapability(MobileCapabilityType.AutomationName, "Flutter");
             capabilities.AddAdditionalCapability(MobileCapabilityType.NoReset, false);
+            capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
             capabilities.AddAdditionalCapability(MobileCapabilityType.NewCommandTimeout, ReadEnvironmentVariable("TESTAPP_MOBILECAPABILITYTYPE_NEWCOMMANDTIMEOUT", orFallbackTo: 60000));
 
             // TODO: 

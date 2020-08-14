@@ -19,6 +19,7 @@ These are known issues I have encountered so far.
 
 | Issue | Discussion |
 | ------|------------|
+| Unable to get find.descendant or find.ancestor to work in Node | These are omitted from the C# bindings until I work it out | 
 | Not all appium-flutter-driver features are supported | Correct. These C# bindings will be updated over time; see Progress below more the current state of parity with appium-flutter-driver |
 | FlutterBy.XXX times out (based on HttpCommandHandler timeout) if an element cannot be found | I have not found a way of specifying timeouts to appium-flutter-driver for individual commands. |
 | waitFor/waitForAbsent does not accept millisecond parameter | I have raised an upstream issue here: https://github.com/truongsinh/appium-flutter-driver/issues/84 . I hide this issue at the moment by accepting a timeoutInSeconds parameter on my FlutterDriver.WaitFor/FlutterDriver.WaitForAbsent method. |
